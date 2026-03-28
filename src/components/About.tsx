@@ -1,3 +1,28 @@
+/**
+ * About Component - Biography and credentials section
+ * 
+ * Purpose: Display professional summary, education, and certifications
+ * Data Sources:
+ * - profile.summary from src/lib/data.ts
+ * - education array from src/lib/data.ts
+ * - certifications array from src/lib/data.ts
+ * 
+ * Features:
+ * - Two-column layout (bio + education/certs)
+ * - Responsive: stacks on mobile
+ * - Education cards with institution, degree, period
+ * - Certifications list
+ * 
+ * Animations:
+ * - Fade in + slide up on scroll into view
+ * 
+ * To Modify:
+ * 1. Update education/certifications in src/lib/data.ts
+ * 2. Adjust Tailwind classes for styling
+ * 3. Add new sections (e.g., publications, speaking)
+ * 
+ * @returns About section React component
+ */
 'use client'
 
 import { motion } from 'framer-motion'

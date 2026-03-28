@@ -1,3 +1,32 @@
+/**
+ * Contact Component - Contact information and social links
+ * 
+ * Purpose: Provide contact options and location information
+ * Data Source: profile object from src/lib/data.ts
+ * 
+ * Features:
+ * - Three contact cards: Email, LinkedIn, GitHub
+ * - Click-to-email functionality
+ * - External links (open in new tab with noopener)
+ * - Location display at bottom
+ * - Hover effects on cards
+ * 
+ * Animations:
+ * - Fade in + slide up on scroll into view
+ * - Card hover: background change
+ * - Icon hover: color accent
+ * 
+ * To Modify:
+ * 1. Update contact info in src/lib/data.ts (profile object)
+ * 2. Fields: email, linkedin, github, location
+ * 3. Add new contact method: duplicate card structure
+ * 
+ * Security:
+ * - All external links use rel="noopener noreferrer"
+ * - Email uses mailto: protocol
+ * 
+ * @returns Contact section React component
+ */
 'use client'
 
 import { motion } from 'framer-motion'

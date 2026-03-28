@@ -1,3 +1,36 @@
+/**
+ * Experience Component - Work history timeline
+ * 
+ * Purpose: Display professional work experience in chronological order
+ * Data Source: experiences array from src/lib/data.ts
+ * 
+ * Features:
+ * - Vertical timeline with connecting line
+ * - Company, position, period, duration, location
+ * - Achievement bullets
+ * - Tech stack tags
+ * - Reverse chronological order (newest first)
+ * 
+ * Animations:
+ * - Fade in + slide from left on scroll into view
+ * - Staggered delay for each experience item
+ * 
+ * To Modify:
+ * 1. Add new experience to src/lib/data.ts (experiences array)
+ * 2. Ensure all fields: company, position, period, duration, location, achievements
+ * 3. Optional: techStack array for technologies used
+ * 
+ * Required Experience Fields:
+ * - company: string
+ * - position: string
+ * - period: string (e.g., "August 2023 - Present")
+ * - duration: string (e.g., "2 years 8 months")
+ * - location: string
+ * - achievements: string[]
+ * - techStack?: string[] (optional)
+ * 
+ * @returns Experience section React component
+ */
 'use client'
 
 import { motion } from 'framer-motion'
