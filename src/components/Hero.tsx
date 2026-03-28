@@ -5,6 +5,29 @@ import Image from 'next/image'
 import { profile } from '@/lib/data'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
 
+/**
+ * Hero Component - Main profile header section
+ * 
+ * Purpose: Display profile photo, name, title, location, summary, and social CTAs
+ * Data Source: profile object from src/lib/data.ts
+ * 
+ * Features:
+ * - Profile photo (circular, with border and shadow)
+ * - Name, title, location display
+ * - Professional summary
+ * - LinkedIn, GitHub, Email buttons
+ * 
+ * Animations:
+ * - Text: Fade in + slide from left
+ * - Photo: Fade in + scale up
+ * 
+ * To Modify:
+ * 1. Update profile data in src/lib/data.ts
+ * 2. Adjust Tailwind classes for styling
+ * 3. Add/remove social buttons as needed
+ * 
+ * @returns Hero section React component
+ */
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">

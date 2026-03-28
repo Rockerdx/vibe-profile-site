@@ -1,3 +1,30 @@
+/**
+ * Skills Component - Skills grid categorized by type
+ * 
+ * Purpose: Display technical skills organized by category
+ * Data Source: skills array from src/lib/data.ts
+ * 
+ * Features:
+ * - Three categories: mobile, backend, other
+ * - Icon for each category (Smartphone, Server, Code)
+ * - Responsive grid (1 col mobile, 3 cols desktop)
+ * - Skill tags with hover effect
+ * 
+ * Animations:
+ * - Fade in + slide up on scroll into view
+ * - Staggered delay for each category card
+ * 
+ * To Modify:
+ * 1. Add skill to src/lib/data.ts (skills array)
+ * 2. Format: { name: 'Skill Name', category: 'mobile' | 'backend' | 'other' }
+ * 3. Add new category: update categoryIcons and categoryTitles objects
+ * 
+ * Skill Interface:
+ * - name: string (display name)
+ * - category: 'mobile' | 'backend' | 'other' (determines which card)
+ * 
+ * @returns Skills section React component
+ */
 'use client'
 
 import { motion } from 'framer-motion'
