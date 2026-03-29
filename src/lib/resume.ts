@@ -1,5 +1,5 @@
 import { profile, experiences, skills, projects, education, certifications } from '@/lib/data'
-import { Experience, Project, Education } from '@/types'
+import { Experience, Project, Education, Certification } from '@/types'
 
 const colors = {
   background: '#0a0a0a',
@@ -202,7 +202,7 @@ export const getResumeDocumentDefinition = (): any => {
         margin: [0, 20, 0, 10],
       },
       {
-        text: certifications.map((cert: string) => `• ${cert}`).join('\n'),
+        text: certifications.map((cert: Certification) => `• ${cert.name}`).join('\n'),
         style: 'certifications',
         color: colors.secondary,
       },

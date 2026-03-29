@@ -1,11 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { experiences } from '@/lib/data'
+import { type Experience } from '@/types'
 import { Briefcase } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
 
-export default function Experience() {
+interface ExperienceProps {
+  experiences: Experience[]
+}
+
+export default function Experience({ experiences }: ExperienceProps) {
   const reducedMotion = useReducedMotion()
 
   return (

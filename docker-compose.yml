@@ -32,7 +32,6 @@ services:
         condition: service_healthy
     networks:
       - homelab-net
-    command: ["sh", "-c", "./migrate && ./main"]
 
   profile-site:
     build:

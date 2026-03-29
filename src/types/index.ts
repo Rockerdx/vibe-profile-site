@@ -1,4 +1,5 @@
 export interface Experience {
+  id: number
   company: string
   position: string
   period: string
@@ -9,11 +10,13 @@ export interface Experience {
 }
 
 export interface Skill {
+  id: number
   name: string
   category: 'mobile' | 'backend' | 'other'
 }
 
 export interface Project {
+  id: number
   name: string
   description: string
   url: string
@@ -22,6 +25,7 @@ export interface Project {
 }
 
 export interface ProfileData {
+  id: number
   name: string
   title: string
   location: string
@@ -33,7 +37,13 @@ export interface ProfileData {
 }
 
 export interface Education {
+  id: number
   institution: string
   degree: string
   period: string
+}
+
+export interface Certification {
+  id: number
+  name: string
 }

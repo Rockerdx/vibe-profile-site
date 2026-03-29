@@ -1,10 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { profile } from '@/lib/data'
+import { ProfileData } from '@/types'
 import { Mail, Linkedin, Github, MapPin } from 'lucide-react'
 
-export default function Contact() {
+interface ContactProps {
+  profile: ProfileData
+}
+
+export default function Contact({ profile }: ContactProps) {
   return (
     <section className="section-container">
       <motion.div

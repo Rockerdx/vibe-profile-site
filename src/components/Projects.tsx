@@ -1,11 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { projects } from '@/lib/data'
+import { type Project } from '@/types'
 import { Github, Star } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
 
-export default function Projects() {
+interface ProjectsProps {
+  projects: Project[]
+}
+
+export default function Projects({ projects }: ProjectsProps) {
   const reducedMotion = useReducedMotion()
   const highlightedProjects = projects.filter(p => p.highlighted)
   const otherProjects = projects.filter(p => !p.highlighted)
