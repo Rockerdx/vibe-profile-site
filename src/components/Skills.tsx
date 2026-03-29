@@ -13,6 +13,7 @@
  * Animations:
  * - Fade in + slide up on scroll into view
  * - Staggered delay for each category card
+ * - Respects prefers-reduced-motion media query
  * 
  * To Modify:
  * 1. Add skill to src/lib/data.ts (skills array)
@@ -30,6 +31,7 @@
 import { motion } from 'framer-motion'
 import { skills } from '@/lib/data'
 import { Smartphone, Server, Code } from 'lucide-react'
+import useReducedMotion from '@/hooks/useReducedMotion'
 
 const categoryIcons = {
   mobile: Smartphone,
@@ -44,6 +46,7 @@ const categoryTitles = {
 }
 
 export default function Skills() {
+  const reducedMotion = useReducedMotion()
   const skillsByCategory = {
     mobile: skills.filter(s => s.category === 'mobile'),
     backend: skills.filter(s => s.category === 'backend'),
@@ -68,8 +71,16 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card"
+                animate={
+                  reducedMotion
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 1, y: 0 }
+                }
+                transition={{
+                  duration: 0.5,
+                  delay: reducedMotion ? 0 : index * 0.1,
+                }}
+                className="card hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Icon className="text-accent" size={24} />
@@ -79,12 +90,24 @@ export default function Skills() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {categorySkills.map((skill, i) => (
-                    <span
+                    <motion.span
                       key={i}
-                      className="bg-surface text-primary px-4 py-2 rounded-lg border border-white/10 hover:border-accent/50 transition-colors text-sm font-medium"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      animate={
+                        reducedMotion
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 1, scale: 1 }
+                      }
+                      transition={{
+                        duration: 0.3,
+                        delay: reducedMotion ? 0 : (i * 0.05 + (index * 0.1)),
+                      }}
+                      className="bg-surface text-primary px-4 py-2 rounded-lg border border-white/10 hover:border-accent/50 hover:scale-105 hover:shadow-md transition-all duration-200 cursor-default text-sm font-medium"
                     >
                       {skill.name}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>

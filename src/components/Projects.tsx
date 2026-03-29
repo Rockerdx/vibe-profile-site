@@ -16,6 +16,7 @@
  * - Fade in + slide up on scroll into view
  * - Staggered delay for project cards
  * - Featured: slide up, More: scale up
+ * - Respects prefers-reduced-motion media query
  * 
  * To Modify:
  * 1. Add project to src/lib/data.ts (projects array)
@@ -36,8 +37,10 @@
 import { motion } from 'framer-motion'
 import { projects } from '@/lib/data'
 import { Github, Star } from 'lucide-react'
+import useReducedMotion from '@/hooks/useReducedMotion'
 
 export default function Projects() {
+  const reducedMotion = useReducedMotion()
   const highlightedProjects = projects.filter(p => p.highlighted)
   const otherProjects = projects.filter(p => !p.highlighted)
 
@@ -66,8 +69,16 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card group hover:bg-surface transition-colors"
+                animate={
+                  reducedMotion
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 1, y: 0 }
+                }
+                transition={{
+                  duration: 0.5,
+                  delay: reducedMotion ? 0 : index * 0.1,
+                }}
+                className="card group hover:bg-surface hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="text-lg font-bold text-primary group-hover:text-accent transition-colors">
@@ -78,12 +89,24 @@ export default function Projects() {
                 <p className="text-secondary text-sm mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, i) => (
-                    <span
+                    <motion.span
                       key={i}
-                      className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-mono"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      animate={
+                        reducedMotion
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 1, scale: 1 }
+                      }
+                      transition={{
+                        duration: 0.3,
+                        delay: reducedMotion ? 0 : (i * 0.05 + (index * 0.1)),
+                      }}
+                      className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-mono group-hover:bg-accent/20 transition-colors"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.a>
@@ -103,8 +126,16 @@ export default function Projects() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="card group hover:bg-surface transition-colors"
+                animate={
+                  reducedMotion
+                    ? { opacity: 1, scale: 1 }
+                    : { opacity: 1, scale: 1 }
+                }
+                transition={{
+                  duration: 0.4,
+                  delay: reducedMotion ? 0 : index * 0.05,
+                }}
+                className="card group hover:bg-surface hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Github className="text-secondary group-hover:text-accent transition-colors" size={18} />
@@ -115,12 +146,24 @@ export default function Projects() {
                 <p className="text-secondary text-sm mb-3">{project.description}</p>
                 <div className="flex flex-wrap gap-1">
                   {project.tech.map((tech, i) => (
-                    <span
+                    <motion.span
                       key={i}
-                      className="text-xs bg-surface text-secondary px-2 py-1 rounded font-mono"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      animate={
+                        reducedMotion
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 1, scale: 1 }
+                      }
+                      transition={{
+                        duration: 0.3,
+                        delay: reducedMotion ? 0 : (i * 0.05 + (index * 0.05)),
+                      }}
+                      className="text-xs bg-surface text-secondary px-2 py-1 rounded font-mono group-hover:text-accent transition-colors"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.a>
