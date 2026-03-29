@@ -2,35 +2,30 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { profile } from '@/lib/data'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
 import { useResumeDownload } from '@/hooks/useResumeDownload'
+import { useEffect, useState } from 'react'
+import { getProfile, type Profile } from '@/lib/api/client'
 
-/**
- * Hero Component - Main profile header section
- * 
- * Purpose: Display profile photo, name, title, location, summary, and social CTAs
- * Data Source: profile object from src/lib/data.ts
- * 
- * Features:
- * - Profile photo (circular, with border and shadow)
- * - Name, title, location display
- * - Professional summary
- * - LinkedIn, GitHub, Email buttons
- * 
- * Animations:
- * - Text: Fade in + slide from left
- * - Photo: Fade in + scale up
- * 
- * To Modify:
- * 1. Update profile data in src/lib/data.ts
- * 2. Adjust Tailwind classes for styling
- * 3. Add/remove social buttons as needed
- * 
- * @returns Hero section React component
- */
 export default function Hero() {
   const { handleDownload } = useResumeDownload()
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getProfile()
+      .then(setProfile)
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading || !profile) {
+    return (
+      <section className="min-h-screen flex items-center justify-center px-6 py-20">
+        <div className="text-primary">Loading...</div>
+      </section>
+    )
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
@@ -44,7 +39,7 @@ export default function Hero() {
             {profile.name}
           </h1>
           <p className="text-xl text-accent mb-4">{profile.title}</p>
-          <p className="text-secondary mb-6">{profile.location}</p>
+          <p className="text-secondary mb-4">{profile.location}</p>
           <p className="text-lg text-primary/80 mb-8 max-w-lg">
             {profile.summary}
           </p>
