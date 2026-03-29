@@ -1,6 +1,6 @@
 # Task List - vibe-profile-site
 
-## ✅ Completed (Phase 1-2)
+## ✅ Completed (Phase 1-4)
 
 - [x] Project initialization with Next.js 14 + TypeScript + Tailwind
 - [x] Project structure setup
@@ -18,6 +18,15 @@
 - [x] Dockerfile for production build
 - [x] docker-compose.yml for homelab
 - [x] README documentation
+- [x] **TASK 3.4:** Create downloadable resume PDF (Issue #12)
+  - Client-side PDF generation using pdfmake
+  - Download button in Hero section
+  - Dark-themed PDF matching website
+- [x] **TASK 4.3:** Improve animations (Issue #15)
+  - Stagger animations for Experience, Skills, Projects
+  - Hover animations on cards and buttons
+  - Respects prefers-reduced-motion media query
+  - Created useReducedMotion hook
 
 ## 📋 TODO - Junior Engineer Tasks
 
