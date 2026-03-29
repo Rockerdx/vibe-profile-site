@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Read(//d /e/PersonalProject/**)",
+      "Bash(rtk rm:*)",
+      "Bash(rtk pnpm:*)",
+      "Bash(rtk git:*)"
+    ]
+  }
+}
