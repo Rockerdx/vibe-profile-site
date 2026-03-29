@@ -14,6 +14,7 @@
  * Animations:
  * - Fade in + slide from left on scroll into view
  * - Staggered delay for each experience item
+ * - Respects prefers-reduced-motion media query
  * 
  * To Modify:
  * 1. Add new experience to src/lib/data.ts (experiences array)
@@ -36,8 +37,11 @@
 import { motion } from 'framer-motion'
 import { experiences } from '@/lib/data'
 import { Briefcase } from 'lucide-react'
+import useReducedMotion from '@/hooks/useReducedMotion'
 
 export default function Experience() {
+  const reducedMotion = useReducedMotion()
+
   return (
     <section className="section-container bg-surface/30">
       <motion.div
@@ -54,11 +58,19 @@ export default function Experience() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative pl-8"
+              animate={
+                reducedMotion
+                  ? { opacity: 1, x: 0 }
+                  : { opacity: 1, x: 0 }
+              }
+              transition={{
+                duration: 0.5,
+                delay: reducedMotion ? 0 : index * 0.1,
+              }}
+              className="relative pl-8 group"
             >
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-background" />
-              <div className="card">
+              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-background group-hover:scale-110 transition-transform" />
+              <div className="card hover:shadow-lg hover:shadow-accent/10 transition-all duration-300">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                   <div>
                     <h3 className="text-xl font-bold text-primary">{exp.position}</h3>
@@ -79,21 +91,21 @@ export default function Experience() {
                       <span className="text-accent mt-1 flex-shrink-0">•</span>
                       {achievement}
                     </li>
-                  ))}
-                </ul>
-                {exp.techStack && (
-                  <div className="flex flex-wrap gap-2">
-                    {exp.techStack.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-mono"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
+              ))}
+            </ul>
+            {exp.techStack && (
+              <div className="flex flex-wrap gap-2">
+                {exp.techStack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-mono group-hover:bg-accent/20 transition-colors"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
+            )}
+          </div>
             </motion.div>
           ))}
         </div>
