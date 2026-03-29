@@ -2,8 +2,8 @@ import { useCallback } from 'react'
 import { downloadResume } from '@/lib/resume'
 
 export const useResumeDownload = () => {
-  const handleDownload = useCallback(() => {
-    downloadResume()
+  const handleDownload = useCallback(async () => {
+    await downloadResume()
   }, [])
 
   return { handleDownload }
