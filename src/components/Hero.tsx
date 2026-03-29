@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { profile } from '@/lib/data'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
+import { useResumeDownload } from '@/hooks/useResumeDownload'
 
 /**
  * Hero Component - Main profile header section
@@ -29,6 +30,8 @@ import { Github, Linkedin, Mail, Download } from 'lucide-react'
  * @returns Hero section React component
  */
 export default function Hero() {
+  const { handleDownload } = useResumeDownload()
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -71,6 +74,13 @@ export default function Hero() {
               <Mail size={20} />
               Email
             </a>
+            <button
+              onClick={handleDownload}
+              className="flex items-center gap-2 bg-primary text-surface px-6 py-3 rounded-lg hover:bg-primary/80 transition-colors"
+            >
+              <Download size={20} />
+              Download Resume
+            </button>
           </div>
         </motion.div>
 

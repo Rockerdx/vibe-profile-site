@@ -31,3 +31,9 @@ export interface ProfileData {
   summary: string
   avatarUrl: string
 }
+
+export interface Education {
+  institution: string
+  degree: string
+  period: string
+}
