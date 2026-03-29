@@ -5,16 +5,17 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/contexts/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0a',
-        surface: '#171717',
-        primary: '#fafafa',
-        secondary: '#a3a3a3',
-        accent: '#3b82f6',
+        background: 'var(--background)',
+        surface: 'var(--surface)',
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        accent: 'var(--accent)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

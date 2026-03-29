@@ -40,23 +40,46 @@ npm run lint
 
 ## Docker Deployment
 
-### Local Build
+### Quick Deploy (Recommended)
+
+```bash
+# Deploy with one command
+./deploy.sh
+
+# Restart without rebuild
+./deploy.sh restart
+
+# View logs
+./deploy.sh logs
+
+# Check status
+./deploy.sh status
+
+# See all commands
+./deploy.sh --help
+```
+
+### Manual Docker Commands
 
 ```bash
 # Build and run
-docker-compose up -d --build
+docker compose up -d --build
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # Stop
-docker-compose down
+docker compose down
 ```
 
 ### Homelab Deployment
 
-The site is configured to run on the homelab network. Access at:
-- Local: http://192.168.0.106:3001
+The site is deployed to the homelab network. Access at:
+- **Local:** http://localhost:3002
+- **Homelab:** http://192.168.0.106:3002
+- **Public:** https://me.rockerdx.site
+
+See [DEPLOY.md](./DEPLOY.md) for full deployment guide.
 
 ## Project Structure
 
