@@ -1,6 +1,7 @@
-import { Experience, Skill, Project, ProfileData } from '@/types'
+import { Experience, Skill, Project, ProfileData, Education, Certification } from '@/types'
 
 export const profile: ProfileData = {
+  id: 1,
   name: 'Muhammad Rizki Putra',
   title: 'Senior Software Engineer | Kotlin | Go | Stockbit',
   location: 'Kota Tangerang Selatan, Banten, Indonesia',
@@ -13,6 +14,7 @@ export const profile: ProfileData = {
 
 export const experiences: Experience[] = [
   {
+    id: 1,
     company: 'Stockbit',
     position: 'Backend Engineer',
     period: 'August 2023 - Present',
@@ -25,6 +27,7 @@ export const experiences: Experience[] = [
     techStack: ['Golang', 'PostgreSQL', 'gRPC', 'Microservices', 'Redis', 'Kafka'],
   },
   {
+    id: 2,
     company: 'Stockbit',
     position: 'Android Engineer',
     period: 'October 2021 - September 2023',
@@ -38,6 +41,7 @@ export const experiences: Experience[] = [
     techStack: ['Kotlin', 'Android', 'Java'],
   },
   {
+    id: 3,
     company: 'Binar Academy',
     position: 'Android Academy Facilitator',
     period: 'April 2022 - August 2022',
@@ -49,6 +53,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin', 'Java'],
   },
   {
+    id: 4,
     company: 'Otospector',
     position: 'Senior Android Developer',
     period: 'March 2021 - September 2021',
@@ -61,6 +66,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin'],
   },
   {
+    id: 5,
     company: 'YesDok',
     position: 'Android Developer',
     period: 'August 2020 - March 2021',
@@ -73,6 +79,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin'],
   },
   {
+    id: 6,
     company: 'Do-It',
     position: 'Fullstack Android Developer',
     period: 'September 2019 - July 2020',
@@ -87,6 +94,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin', 'Spring', 'Vue.js'],
   },
   {
+    id: 7,
     company: 'Self-Employed',
     position: 'Android Developer',
     period: 'September 2016 - August 2019',
@@ -98,6 +106,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Java', 'Kotlin'],
   },
   {
+    id: 8,
     company: 'Mashara',
     position: 'Android Developer',
     period: 'November 2017 - February 2019',
@@ -111,6 +120,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Java'],
   },
   {
+    id: 9,
     company: 'Universitas Sumatera Utara',
     position: 'Laboratory Assistant',
     period: 'September 2016 - August 2017',
@@ -124,24 +134,25 @@ export const experiences: Experience[] = [
 ]
 
 export const skills: Skill[] = [
-  { name: 'Mobile Application Development', category: 'mobile' },
-  { name: 'Android Framework', category: 'mobile' },
-  { name: 'Mobile Product Development', category: 'mobile' },
-  { name: 'Kotlin', category: 'mobile' },
-  { name: 'Java', category: 'mobile' },
-  { name: 'Flutter', category: 'mobile' },
-  { name: 'Golang', category: 'backend' },
-  { name: 'PostgreSQL', category: 'backend' },
-  { name: 'gRPC', category: 'backend' },
-  { name: 'Microservices', category: 'backend' },
-  { name: 'Redis', category: 'backend' },
-  { name: 'Kafka', category: 'backend' },
-  { name: 'Spring', category: 'backend' },
-  { name: 'Vue.js', category: 'other' },
+  { id: 1, name: 'Mobile Application Development', category: 'mobile' },
+  { id: 2, name: 'Android Framework', category: 'mobile' },
+  { id: 3, name: 'Mobile Product Development', category: 'mobile' },
+  { id: 4, name: 'Kotlin', category: 'mobile' },
+  { id: 5, name: 'Java', category: 'mobile' },
+  { id: 6, name: 'Flutter', category: 'mobile' },
+  { id: 7, name: 'Golang', category: 'backend' },
+  { id: 8, name: 'PostgreSQL', category: 'backend' },
+  { id: 9, name: 'gRPC', category: 'backend' },
+  { id: 10, name: 'Microservices', category: 'backend' },
+  { id: 11, name: 'Redis', category: 'backend' },
+  { id: 12, name: 'Kafka', category: 'backend' },
+  { id: 13, name: 'Spring', category: 'backend' },
+  { id: 14, name: 'Vue.js', category: 'other' },
 ]
 
 export const projects: Project[] = [
   {
+    id: 1,
     name: 'MyPopularMoviesApps',
     description: 'App for Udacity Submission - Movie discovery application',
     url: 'https://github.com/Rockerdx/MyPopularMoviesApps',
@@ -149,6 +160,7 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 2,
     name: 'FlutterPopularMoviesApp',
     description: 'Simple implementation of Flutter with API from TheMovieDB',
     url: 'https://github.com/Rockerdx/FlutterPopularMoviesApp',
@@ -156,6 +168,7 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 3,
     name: 'KlinikApp',
     description: 'App to book reservation from nearby Clinic',
     url: 'https://github.com/Rockerdx/KlinikApp',
@@ -163,6 +176,7 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 4,
     name: 'DeepLearningOnAndroid',
     description: 'Material for deploying deep learning models on mobile and embedded platforms',
     url: 'https://github.com/Rockerdx/DeepLearningOnAndroid',
@@ -170,12 +184,14 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 5,
     name: 'myJNEApps',
     description: 'App to help customers send packages without going to JNE office',
     url: 'https://github.com/Rockerdx/myJNEApps',
     tech: ['Java', 'Android'],
   },
   {
+    id: 6,
     name: 'Temperature',
     description: 'First try creating a library for Android',
     url: 'https://github.com/Rockerdx/Temperature',
@@ -183,15 +199,16 @@ export const projects: Project[] = [
   },
 ]
 
-export const education = [
+export const education: Education[] = [
   {
+    id: 1,
     institution: 'Universitas Sumatera Utara',
     degree: "Bachelor's degree, Computer Science",
     period: '2013 - 2019',
   },
 ]
 
-export const certifications = [
-  'Binar Academy Facilitators',
-  'Bangkit Academy Instructor and Mentor',
+export const certifications: Certification[] = [
+  { id: 1, name: 'Binar Academy Facilitators' },
+  { id: 2, name: 'Bangkit Academy Instructor and Mentor' },
 ]

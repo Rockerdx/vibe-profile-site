@@ -1,10 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { profile, certifications, education } from '@/lib/data'
+import { ProfileData, Education, Certification } from '@/types'
 import { Award, GraduationCap } from 'lucide-react'
 
-export default function About() {
+interface AboutProps {
+  profile: ProfileData
+  education: Education[]
+  certifications: Certification[]
+}
+
+export default function About({ profile, education, certifications }: AboutProps) {
   return (
     <section className="section-container">
       <motion.div
@@ -51,7 +57,7 @@ export default function About() {
                 {certifications.map((cert, index) => (
                   <li key={index} className="text-secondary flex items-start gap-2">
                     <span className="text-accent mt-1">•</span>
-                    {cert}
+                    {cert.name}
                   </li>
                 ))}
               </ul>

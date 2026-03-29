@@ -2,11 +2,15 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { profile } from '@/lib/data'
+import { ProfileData } from '@/types'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
 import { useResumeDownload } from '@/hooks/useResumeDownload'
 
-export default function Hero() {
+interface HeroProps {
+  profile: ProfileData
+}
+
+export default function Hero({ profile }: HeroProps) {
   const { handleDownload } = useResumeDownload()
 
   return (

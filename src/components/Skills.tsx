@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { skills } from '@/lib/data'
+import { type Skill } from '@/types'
 import { Smartphone, Server, Code } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
 
@@ -17,7 +17,11 @@ const categoryTitles = {
   other: 'Other Technologies',
 }
 
-export default function Skills() {
+interface SkillsProps {
+  skills: Skill[]
+}
+
+export default function Skills({ skills }: SkillsProps) {
   const reducedMotion = useReducedMotion()
   const skillsByCategory = {
     mobile: skills.filter(s => s.category === 'mobile'),
