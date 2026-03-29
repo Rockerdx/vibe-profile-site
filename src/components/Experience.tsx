@@ -1,30 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { experiences } from '@/lib/data'
 import { Briefcase } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
-import { useEffect, useState } from 'react'
-import { getExperiences, type Experience } from '@/lib/api/client'
 
 export default function Experience() {
   const reducedMotion = useReducedMotion()
-  const [experiences, setExperiences] = useState<Experience[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getExperiences()
-      .then(setExperiences)
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }, [])
-
-  if (loading) {
-    return (
-      <section className="section-container bg-surface/30">
-        <div className="text-primary text-center">Loading...</div>
-      </section>
-    )
-  }
 
   return (
     <section className="section-container bg-surface/30">
@@ -42,11 +24,6 @@ export default function Experience() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              animate={
-                reducedMotion
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 1, x: 0 }
-              }
               transition={{
                 duration: 0.5,
                 delay: reducedMotion ? 0 : index * 0.1,

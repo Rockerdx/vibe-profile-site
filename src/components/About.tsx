@@ -1,33 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { profile, certifications, education } from '@/lib/data'
 import { Award, GraduationCap } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { getEducation, getCertifications, type Education, type Certification } from '@/lib/api/client'
 
 export default function About() {
-  const [education, setEducation] = useState<Education[]>([])
-  const [certifications, setCertifications] = useState<Certification[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    Promise.all([getEducation(), getCertifications()])
-      .then(([edu, certs]) => {
-        setEducation(edu)
-        setCertifications(certs)
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }, [])
-
-  if (loading) {
-    return (
-      <section className="section-container">
-        <div className="text-primary text-center">Loading...</div>
-      </section>
-    )
-  }
-
   return (
     <section className="section-container">
       <motion.div
@@ -74,7 +51,7 @@ export default function About() {
                 {certifications.map((cert, index) => (
                   <li key={index} className="text-secondary flex items-start gap-2">
                     <span className="text-accent mt-1">•</span>
-                    {cert.name}
+                    {cert}
                   </li>
                 ))}
               </ul>

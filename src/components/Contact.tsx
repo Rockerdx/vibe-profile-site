@@ -1,29 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { profile } from '@/lib/data'
 import { Mail, Linkedin, Github, MapPin } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { getProfile, type Profile } from '@/lib/api/client'
 
 export default function Contact() {
-  const [profile, setProfile] = useState<Profile | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getProfile()
-      .then(setProfile)
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }, [])
-
-  if (loading || !profile) {
-    return (
-      <section className="section-container">
-        <div className="text-primary text-center">Loading...</div>
-      </section>
-    )
-  }
-
   return (
     <section className="section-container">
       <motion.div

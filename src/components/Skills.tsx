@@ -1,10 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { skills } from '@/lib/data'
 import { Smartphone, Server, Code } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
-import { useEffect, useState } from 'react'
-import { getSkills, type Skill } from '@/lib/api/client'
 
 const categoryIcons = {
   mobile: Smartphone,
@@ -20,24 +19,6 @@ const categoryTitles = {
 
 export default function Skills() {
   const reducedMotion = useReducedMotion()
-  const [skills, setSkills] = useState<Skill[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getSkills()
-      .then(setSkills)
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }, [])
-
-  if (loading) {
-    return (
-      <section className="section-container">
-        <div className="text-primary text-center">Loading...</div>
-      </section>
-    )
-  }
-
   const skillsByCategory = {
     mobile: skills.filter(s => s.category === 'mobile'),
     backend: skills.filter(s => s.category === 'backend'),
@@ -62,11 +43,6 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                animate={
-                  reducedMotion
-                    ? { opacity: 1, y: 0 }
-                    : { opacity: 1, y: 0 }
-                }
                 transition={{
                   duration: 0.5,
                   delay: reducedMotion ? 0 : index * 0.1,
@@ -86,11 +62,6 @@ export default function Skills() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      animate={
-                        reducedMotion
-                          ? { opacity: 1, scale: 1 }
-                          : { opacity: 1, scale: 1 }
-                      }
                       transition={{
                         duration: 0.3,
                         delay: reducedMotion ? 0 : (i * 0.05 + (index * 0.1)),
