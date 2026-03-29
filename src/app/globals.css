@@ -5,13 +5,34 @@
 :root {
   --foreground: #fafafa;
   --background: #0a0a0a;
+  --primary: #fafafa;
+  --secondary: #a3a3a3;
+  --accent: #3b82f6;
+  --surface: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #fafafa;
-    --background: #0a0a0a;
-  }
+.dark {
+  --foreground: #fafafa;
+  --background: #0a0a0a;
+  --primary: #fafafa;
+  --secondary: #a3a3a3;
+  --accent: #3b82f6;
+  --surface: #171717;
+}
+
+.light {
+  --foreground: #0a0a0a;
+  --background: #fafafa;
+  --primary: #0a0a0a;
+  --secondary: #525252;
+  --accent: #3b82f6;
+  --surface: #e5e5e5;
+}
+
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -36,6 +57,11 @@ body {
   }
 
   .card {
-    @apply bg-surface rounded-lg p-6 border border-white/5 hover:border-accent/50 transition-colors;
+    @apply bg-surface rounded-lg p-6 border border-white/5 transition-colors;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    opacity: 0.5;
   }
 }
