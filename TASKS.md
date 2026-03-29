@@ -87,7 +87,7 @@
   docker-compose up -d --build
   docker-compose logs -f
   ```
-  - Verify site accessible at localhost:3001
+  - Verify site accessible at localhost:3002
   - Check all links work
   - Test on different browsers
 

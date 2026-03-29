@@ -120,7 +120,7 @@ docker-compose down && docker-compose up -d --build --force-recreate
 |---------|----------|
 | Build fails | Run `npm install`, check TypeScript errors |
 | Styles not updating | Clear `.next` folder: `rm -rf .next` |
-| Docker won't start | Check port 3001 not in use |
+| Docker won't start | Check port 3002 not in use |
 | Animation janky | Add `viewport={{ once: true }}` |
 | Icons not showing | Import from `lucide-react` correctly |
 

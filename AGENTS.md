@@ -215,7 +215,7 @@ docker-compose down
 ```
 
 ### Homelab
-- Access at: http://192.168.0.106:3001
+- Access at: http://192.168.0.106:3002
 - Docker container on existing homelab server
 
 ## Troubleshooting

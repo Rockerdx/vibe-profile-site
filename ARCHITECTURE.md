@@ -166,7 +166,7 @@ graph LR
     B --> C[Next.js Build]
     C --> D[Static Assets]
     D --> E[Node.js Server]
-    E --> F[Port 3001]
+    E --> F[Port 3002]
     F --> G[Reverse Proxy]
     G --> H[Users]
 ```
@@ -174,8 +174,8 @@ graph LR
 ### Docker Flow
 1. `Dockerfile` builds Next.js production image
 2. `docker-compose.yml` orchestrates container
-3. Exposes port 3001 on homelab network
-4. Accessible at http://192.168.0.106:3001
+3. Exposes port 3002 on homelab network
+4. Accessible at http://192.168.0.106:3002
 
 ## Security Considerations
 
