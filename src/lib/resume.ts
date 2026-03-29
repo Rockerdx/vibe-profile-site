@@ -1,9 +1,5 @@
-import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from 'pdfmake/build/vfs_fonts'
 import { profile, experiences, skills, projects, education, certifications } from '@/lib/data'
 import { Experience, Project, Education } from '@/types'
-
-pdfMake.addVirtualFileSystem(pdfFonts)
 
 const colors = {
   background: '#0a0a0a',
@@ -300,9 +296,15 @@ export const getResumeDocumentDefinition = (): any => {
   }
 }
 
-export const downloadResume = () => {
+export const downloadResume = async () => {
+  const pdfMake = await import('pdfmake/build/pdfmake')
+  const pdfFonts = await import('pdfmake/build/vfs_fonts')
+  
+  const vfs = (pdfFonts as any).default.vfs
+  ;(pdfMake as any).default.vfs = vfs
+  
   const docDefinition = getResumeDocumentDefinition()
-  pdfMake.createPdf(docDefinition).download('resume.pdf')
+  ;(pdfMake as any).default.createPdf(docDefinition).download('resume.pdf')
 }
 
 export default getResumeDocumentDefinition
