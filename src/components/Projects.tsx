@@ -1,46 +1,31 @@
-/**
- * Projects Component - Project showcase with featured and regular projects
- * 
- * Purpose: Display personal and professional projects with GitHub links
- * Data Source: projects array from src/lib/data.ts
- * 
- * Features:
- * - Two sections: Featured Projects + More Projects
- * - Featured: Larger cards, grid layout
- * - More Projects: Smaller cards, 3-column grid
- * - GitHub links (open in new tab)
- * - Tech stack tags for each project
- * - Hover effects on cards
- * 
- * Animations:
- * - Fade in + slide up on scroll into view
- * - Staggered delay for project cards
- * - Featured: slide up, More: scale up
- * - Respects prefers-reduced-motion media query
- * 
- * To Modify:
- * 1. Add project to src/lib/data.ts (projects array)
- * 2. Required fields: name, description, url, tech[]
- * 3. Set highlighted: true for featured projects
- * 
- * Project Interface:
- * - name: string (project title)
- * - description: string (brief description)
- * - url: string (GitHub URL)
- * - tech: string[] (technologies used)
- * - highlighted?: boolean (optional, defaults to false)
- * 
- * @returns Projects section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { projects } from '@/lib/data'
 import { Github, Star } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
+import { useEffect, useState } from 'react'
+import { getProjects, type Project } from '@/lib/api/client'
 
 export default function Projects() {
   const reducedMotion = useReducedMotion()
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getProjects()
+      .then(setProjects)
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="section-container bg-surface/30">
+        <div className="text-primary text-center">Loading...</div>
+      </section>
+    )
+  }
+
   const highlightedProjects = projects.filter(p => p.highlighted)
   const otherProjects = projects.filter(p => !p.highlighted)
 

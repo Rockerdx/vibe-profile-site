@@ -1,37 +1,10 @@
-/**
- * Skills Component - Skills grid categorized by type
- * 
- * Purpose: Display technical skills organized by category
- * Data Source: skills array from src/lib/data.ts
- * 
- * Features:
- * - Three categories: mobile, backend, other
- * - Icon for each category (Smartphone, Server, Code)
- * - Responsive grid (1 col mobile, 3 cols desktop)
- * - Skill tags with hover effect
- * 
- * Animations:
- * - Fade in + slide up on scroll into view
- * - Staggered delay for each category card
- * - Respects prefers-reduced-motion media query
- * 
- * To Modify:
- * 1. Add skill to src/lib/data.ts (skills array)
- * 2. Format: { name: 'Skill Name', category: 'mobile' | 'backend' | 'other' }
- * 3. Add new category: update categoryIcons and categoryTitles objects
- * 
- * Skill Interface:
- * - name: string (display name)
- * - category: 'mobile' | 'backend' | 'other' (determines which card)
- * 
- * @returns Skills section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { skills } from '@/lib/data'
 import { Smartphone, Server, Code } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
+import { useEffect, useState } from 'react'
+import { getSkills, type Skill } from '@/lib/api/client'
 
 const categoryIcons = {
   mobile: Smartphone,
@@ -47,6 +20,24 @@ const categoryTitles = {
 
 export default function Skills() {
   const reducedMotion = useReducedMotion()
+  const [skills, setSkills] = useState<Skill[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getSkills()
+      .then(setSkills)
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="section-container">
+        <div className="text-primary text-center">Loading...</div>
+      </section>
+    )
+  }
+
   const skillsByCategory = {
     mobile: skills.filter(s => s.category === 'mobile'),
     backend: skills.filter(s => s.category === 'backend'),

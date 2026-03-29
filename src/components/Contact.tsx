@@ -1,39 +1,29 @@
-/**
- * Contact Component - Contact information and social links
- * 
- * Purpose: Provide contact options and location information
- * Data Source: profile object from src/lib/data.ts
- * 
- * Features:
- * - Three contact cards: Email, LinkedIn, GitHub
- * - Click-to-email functionality
- * - External links (open in new tab with noopener)
- * - Location display at bottom
- * - Hover effects on cards
- * 
- * Animations:
- * - Fade in + slide up on scroll into view
- * - Card hover: background change
- * - Icon hover: color accent
- * 
- * To Modify:
- * 1. Update contact info in src/lib/data.ts (profile object)
- * 2. Fields: email, linkedin, github, location
- * 3. Add new contact method: duplicate card structure
- * 
- * Security:
- * - All external links use rel="noopener noreferrer"
- * - Email uses mailto: protocol
- * 
- * @returns Contact section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { profile } from '@/lib/data'
 import { Mail, Linkedin, Github, MapPin } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { getProfile, type Profile } from '@/lib/api/client'
 
 export default function Contact() {
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getProfile()
+      .then(setProfile)
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading || !profile) {
+    return (
+      <section className="section-container">
+        <div className="text-primary text-center">Loading...</div>
+      </section>
+    )
+  }
+
   return (
     <section className="section-container">
       <motion.div

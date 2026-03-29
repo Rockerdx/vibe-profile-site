@@ -1,35 +1,33 @@
-/**
- * About Component - Biography and credentials section
- * 
- * Purpose: Display professional summary, education, and certifications
- * Data Sources:
- * - profile.summary from src/lib/data.ts
- * - education array from src/lib/data.ts
- * - certifications array from src/lib/data.ts
- * 
- * Features:
- * - Two-column layout (bio + education/certs)
- * - Responsive: stacks on mobile
- * - Education cards with institution, degree, period
- * - Certifications list
- * 
- * Animations:
- * - Fade in + slide up on scroll into view
- * 
- * To Modify:
- * 1. Update education/certifications in src/lib/data.ts
- * 2. Adjust Tailwind classes for styling
- * 3. Add new sections (e.g., publications, speaking)
- * 
- * @returns About section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { profile, certifications, education } from '@/lib/data'
 import { Award, GraduationCap } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { getEducation, getCertifications, type Education, type Certification } from '@/lib/api/client'
 
 export default function About() {
+  const [education, setEducation] = useState<Education[]>([])
+  const [certifications, setCertifications] = useState<Certification[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    Promise.all([getEducation(), getCertifications()])
+      .then(([edu, certs]) => {
+        setEducation(edu)
+        setCertifications(certs)
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="section-container">
+        <div className="text-primary text-center">Loading...</div>
+      </section>
+    )
+  }
+
   return (
     <section className="section-container">
       <motion.div
@@ -76,7 +74,7 @@ export default function About() {
                 {certifications.map((cert, index) => (
                   <li key={index} className="text-secondary flex items-start gap-2">
                     <span className="text-accent mt-1">•</span>
-                    {cert}
+                    {cert.name}
                   </li>
                 ))}
               </ul>
