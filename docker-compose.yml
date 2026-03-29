@@ -1,16 +1,17 @@
-version: '3.8'
-
 services:
   profile-site:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NODE_OPTIONS=--max-old-space-size=2048
     container_name: vibe-profile-site
     restart: unless-stopped
     ports:
-      - "3001:3000"
+      - "3002:3000"
     environment:
       - NODE_ENV=production
+      - NODE_OPTIONS=--max-old-space-size=2048
     networks:
       - homelab-net
 
