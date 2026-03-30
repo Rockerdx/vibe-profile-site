@@ -186,67 +186,30 @@
     @apply w-full;
   }
 
-  /* Button styles - fixed for Tailwind CSS variable compatibility */
+  /* Button styles */
   .btn-primary {
-    @apply px-6 py-3 font-medium rounded-lg transition-all duration-200;
-    background-color: var(--accent);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    opacity: 0.9;
-    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.25);
-  }
-
-  .btn-primary:active {
-    transform: scale(0.95);
-  }
-
-  .btn-primary:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    @apply px-6 py-3 bg-accent text-white font-medium rounded-lg 
+           transition-all duration-200 hover:bg-accent/90 
+           hover:shadow-lg hover:shadow-accent/25
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 font-medium rounded-lg transition-all duration-200;
-    background-color: var(--surface);
-    color: var(--primary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .light .btn-secondary {
-    border-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .btn-secondary:hover {
-    background-color: var(--surface-elevated);
-    border-color: rgba(59, 130, 246, 0.3);
-  }
-
-  .btn-secondary:active {
-    transform: scale(0.95);
+    @apply px-6 py-3 bg-surface text-primary font-medium rounded-lg 
+           border border-border transition-all duration-200 
+           hover:bg-surface-elevated hover:border-accent/30
+           active:scale-95;
   }
 
   /* Form styles */
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg transition-all duration-200;
-    background-color: var(--surface);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--primary);
-  }
-
-  .input-field::placeholder {
-    color: rgba(163, 163, 163, 0.5);
-  }
-
-  .input-field:focus {
-    outline: none;
-    border-color: transparent;
-    box-shadow: 0 0 0 2px var(--accent);
+    @apply w-full px-4 py-3 bg-surface border border-border rounded-lg 
+           text-primary placeholder:text-secondary/50 
+           focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent 
+           transition-all duration-200;
   }
 
   .input-label {
-    @apply block text-sm font-medium mb-2;
-    color: var(--secondary);
+    @apply block text-sm font-medium text-secondary mb-2;
   }
 }
