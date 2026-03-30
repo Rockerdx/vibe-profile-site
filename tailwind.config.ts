@@ -13,9 +13,11 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         surface: 'var(--surface)',
+        'surface-elevated': 'var(--surface-elevated)',
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         accent: 'var(--accent)',
+        border: 'rgba(255, 255, 255, 0.1)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
