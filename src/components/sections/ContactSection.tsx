@@ -82,7 +82,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-bold text-primary mb-1 font-[family-name:var(--font-space-grotesk)]">Get In Touch</h2>
+        <h2 className="text-2xl font-bold text-primary mb-1 font-bold">Get In Touch</h2>
         <p className="text-secondary text-sm">Let&apos;s work together</p>
       </motion.div>
 
