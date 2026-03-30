@@ -75,3 +75,16 @@ export interface GitHubStats {
   topLanguages: GitHubLanguage[]
   recentRepos: GitHubRepo[]
 }
+
+export interface Testimonial {
+  id: number
+  author: string
+  role: string
+  company: string
+  quote: string
+  linkedinUrl?: string
+  avatarUrl?: string
+}
+
+// Re-export blog types
+export * from './blog'

@@ -6,6 +6,7 @@ import {
   Education,
   Certification,
   GitHubStats,
+  Testimonial,
 } from '@/types'
 import {
   getProfile,
@@ -24,6 +25,7 @@ import {
   education as staticEducation,
   certifications as staticCertifications,
   githubStats as staticGitHubStats,
+  testimonials as staticTestimonials,
 } from '@/lib/data'
 
 export async function getProfileData(): Promise<ProfileData> {
@@ -87,4 +89,9 @@ export async function getGitHubStatsData(): Promise<GitHubStats> {
     console.error('Failed to fetch GitHub stats from API, using fallback:', error)
     return staticGitHubStats
   }
+}
+
+export async function getTestimonialsData(): Promise<Testimonial[]> {
+  // Static data only - no API endpoint for testimonials
+  return staticTestimonials
 }
