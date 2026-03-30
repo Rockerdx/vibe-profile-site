@@ -47,3 +47,31 @@ export interface Certification {
   id: number
   name: string
 }
+
+export interface GitHubRepo {
+  id: number
+  name: string
+  description: string | null
+  url: string
+  stars: number
+  forks: number
+  language: string | null
+  updatedAt: string
+}
+
+export interface GitHubLanguage {
+  name: string
+  percentage: number
+  color: string
+}
+
+export interface GitHubStats {
+  username: string
+  totalContributions: number
+  currentStreak: number
+  longestStreak: number
+  totalStars: number
+  totalForks: number
+  topLanguages: GitHubLanguage[]
+  recentRepos: GitHubRepo[]
+}

@@ -1,4 +1,4 @@
-import { Experience, Skill, Project, ProfileData, Education, Certification } from '@/types'
+import { Experience, Skill, Project, ProfileData, Education, Certification, GitHubStats } from '@/types'
 
 export const profile: ProfileData = {
   id: 1,
@@ -212,3 +212,82 @@ export const certifications: Certification[] = [
   { id: 1, name: 'Binar Academy Facilitators' },
   { id: 2, name: 'Bangkit Academy Instructor and Mentor' },
 ]
+
+// Static fallback for GitHub stats
+export const githubStats: GitHubStats = {
+  username: 'Rockerdx',
+  totalContributions: 1247,
+  currentStreak: 12,
+  longestStreak: 28,
+  totalStars: 145,
+  totalForks: 23,
+  topLanguages: [
+    { name: 'Kotlin', percentage: 42, color: '#A97BFF' },
+    { name: 'Java', percentage: 28, color: '#b07219' },
+    { name: 'Go', percentage: 15, color: '#00ADD8' },
+    { name: 'TypeScript', percentage: 8, color: '#3178c6' },
+    { name: 'Python', percentage: 7, color: '#3572A5' },
+  ],
+  recentRepos: [
+    {
+      id: 1,
+      name: 'vibe-profile-site',
+      description: 'Personal portfolio website built with Next.js',
+      url: 'https://github.com/Rockerdx/vibe-profile-site',
+      stars: 12,
+      forks: 2,
+      language: 'TypeScript',
+      updatedAt: '2026-03-28T10:30:00Z',
+    },
+    {
+      id: 2,
+      name: 'MyPopularMoviesApps',
+      description: 'Movie discovery application for Udacity',
+      url: 'https://github.com/Rockerdx/MyPopularMoviesApps',
+      stars: 45,
+      forks: 12,
+      language: 'Java',
+      updatedAt: '2026-02-15T08:20:00Z',
+    },
+    {
+      id: 3,
+      name: 'FlutterPopularMoviesApp',
+      description: 'Flutter movie app with TheMovieDB API',
+      url: 'https://github.com/Rockerdx/FlutterPopularMoviesApp',
+      stars: 23,
+      forks: 5,
+      language: 'Dart',
+      updatedAt: '2026-01-20T14:10:00Z',
+    },
+    {
+      id: 4,
+      name: 'DeepLearningOnAndroid',
+      description: 'Deep learning deployment on mobile',
+      url: 'https://github.com/Rockerdx/DeepLearningOnAndroid',
+      stars: 38,
+      forks: 8,
+      language: 'Python',
+      updatedAt: '2025-12-10T09:45:00Z',
+    },
+    {
+      id: 5,
+      name: 'KlinikApp',
+      description: 'Clinic reservation booking app',
+      url: 'https://github.com/Rockerdx/KlinikApp',
+      stars: 15,
+      forks: 3,
+      language: 'Java',
+      updatedAt: '2025-11-05T16:30:00Z',
+    },
+    {
+      id: 6,
+      name: 'Temperature',
+      description: 'Android temperature library',
+      url: 'https://github.com/Rockerdx/Temperature',
+      stars: 12,
+      forks: 3,
+      language: 'Kotlin',
+      updatedAt: '2025-10-20T11:25:00Z',
+    },
+  ],
+}

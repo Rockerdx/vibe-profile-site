@@ -5,6 +5,7 @@ import {
   Project,
   Education,
   Certification,
+  GitHubStats,
 } from '@/types'
 import {
   getProfile,
@@ -13,6 +14,7 @@ import {
   getProjects,
   getEducation,
   getCertifications,
+  getGitHubStats,
 } from '@/lib/api/client'
 import {
   profile as staticProfile,
@@ -21,6 +23,7 @@ import {
   projects as staticProjects,
   education as staticEducation,
   certifications as staticCertifications,
+  githubStats as staticGitHubStats,
 } from '@/lib/data'
 
 export async function getProfileData(): Promise<ProfileData> {
@@ -74,5 +77,14 @@ export async function getCertificationsData(): Promise<Certification[]> {
   } catch (error) {
     console.error('Failed to fetch certifications from API, using fallback:', error)
     return staticCertifications
+  }
+}
+
+export async function getGitHubStatsData(): Promise<GitHubStats> {
+  try {
+    return await getGitHubStats()
+  } catch (error) {
+    console.error('Failed to fetch GitHub stats from API, using fallback:', error)
+    return staticGitHubStats
   }
 }
