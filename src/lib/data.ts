@@ -6,7 +6,7 @@ export const profile: ProfileData = {
   title: 'Senior Software Engineer | Kotlin | Go | Stockbit',
   location: 'Kota Tangerang Selatan, Banten, Indonesia',
   email: 'rzk.putra@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/muhammadrizky-putra',
+  linkedin: 'https://www.linkedin.com/in/muhammad-rizky-putra/',
   github: 'https://github.com/Rockerdx',
   summary: 'Seasoned Software Engineer with 5+ years of hands-on experience. Currently excelling as a Backend Engineer at Stockbit, specializing in Go development. Previously made significant contributions to Android development—improving app reliability and teaching Android classes at Binar Academy.',
   avatarUrl: 'https://avatars.githubusercontent.com/u/16275342?v=4',
