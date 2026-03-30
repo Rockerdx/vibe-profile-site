@@ -75,3 +75,13 @@ export interface GitHubStats {
   topLanguages: GitHubLanguage[]
   recentRepos: GitHubRepo[]
 }
+
+export interface Testimonial {
+  id: number
+  author: string
+  role: string
+  company: string
+  quote: string
+  linkedinUrl?: string
+  avatarUrl?: string
+}

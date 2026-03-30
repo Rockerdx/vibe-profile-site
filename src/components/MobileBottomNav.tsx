@@ -1,16 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { 
-  User, 
-  Briefcase, 
-  Code2, 
-  FolderGit2, 
+import {
+  User,
+  Briefcase,
+  Code2,
+  FolderGit2,
   Mail,
-  Home
+  Home,
+  MessageSquare,
 } from 'lucide-react'
 
-export type TabId = 'home' | 'about' | 'experience' | 'skills' | 'projects' | 'contact'
+export type TabId = 'home' | 'about' | 'experience' | 'skills' | 'projects' | 'testimonials' | 'contact'
 
 interface Tab {
   id: TabId
@@ -24,6 +25,7 @@ const tabs: Tab[] = [
   { id: 'experience', label: 'Work', icon: Briefcase },
   { id: 'skills', label: 'Skills', icon: Code2 },
   { id: 'projects', label: 'Projects', icon: FolderGit2 },
+  { id: 'testimonials', label: 'Reviews', icon: MessageSquare },
   { id: 'contact', label: 'Contact', icon: Mail },
 ]
 

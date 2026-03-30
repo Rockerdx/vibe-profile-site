@@ -21,10 +21,14 @@ import {
   getEducationData,
   getCertificationsData,
   getGitHubStatsData,
+  getTestimonialsData,
 } from '@/lib/api-data'
 
 // Dynamically import MobileShell with SSR disabled to prevent hydration issues
 const MobileShell = dynamic(() => import('@/components/MobileShell'), { ssr: false })
+
+// Dynamically import TestimonialsSection
+const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'), { ssr: false })
 
 export default async function Home() {
   const [
@@ -35,6 +39,7 @@ export default async function Home() {
     education,
     certifications,
     githubStats,
+    testimonials,
   ] = await Promise.all([
     getProfileData(),
     getExperiencesData(),
@@ -43,6 +48,7 @@ export default async function Home() {
     getEducationData(),
     getCertificationsData(),
     getGitHubStatsData(),
+    getTestimonialsData(),
   ])
 
   const mobileSections = {
@@ -51,6 +57,7 @@ export default async function Home() {
     experience: <ExperienceSection experiences={experiences} />,
     skills: <SkillsSection skills={skills} />,
     projects: <ProjectsSection projects={projects} />,
+    testimonials: <TestimonialsSection testimonials={testimonials} />,
     contact: <ContactSection profile={profile} />,
   }
 
@@ -60,6 +67,7 @@ export default async function Home() {
       <About profile={profile} education={education} certifications={certifications} />
       <GitHubStats stats={githubStats} />
       <Experience experiences={experiences} />
+      <TestimonialsSection testimonials={testimonials} />
       <Skills skills={skills} />
       <Projects projects={projects} />
       <Contact profile={profile} />

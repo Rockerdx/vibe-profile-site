@@ -1,4 +1,4 @@
-import { Experience, Skill, Project, ProfileData, Education, Certification, GitHubStats } from '@/types'
+import { Experience, Skill, Project, ProfileData, Education, Certification, GitHubStats, Testimonial } from '@/types'
 
 export const profile: ProfileData = {
   id: 1,
@@ -291,3 +291,46 @@ export const githubStats: GitHubStats = {
     },
   ],
 }
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    author: 'Ahmad Fauzi',
+    role: 'Senior Backend Engineer',
+    company: 'Stockbit',
+    quote: 'Rizki is one of the most dedicated engineers I have worked with. His ability to quickly adapt from Android to Backend development was impressive. He consistently delivers high-quality code and is always willing to help the team.',
+    linkedinUrl: 'https://www.linkedin.com/in/example1',
+  },
+  {
+    id: 2,
+    author: 'Siti Nurhaliza',
+    role: 'Engineering Manager',
+    company: 'Binar Academy',
+    quote: 'As a facilitator at Binar Academy, Rizki showed exceptional teaching skills. He made complex Android concepts accessible to beginners and was always patient with students. His contributions helped many launch their tech careers.',
+    linkedinUrl: 'https://www.linkedin.com/in/example2',
+  },
+  {
+    id: 3,
+    author: 'Budi Santoso',
+    role: 'Tech Lead',
+    company: 'Otospector',
+    quote: 'Rizki played a crucial role in launching our new app from scratch. His initiative and problem-solving skills were invaluable. He has a strong sense of ownership and always delivers beyond expectations.',
+    linkedinUrl: 'https://www.linkedin.com/in/example3',
+  },
+  {
+    id: 4,
+    author: 'Dewi Anggraini',
+    role: 'Product Manager',
+    company: 'YesDok',
+    quote: 'Working with Rizki was a pleasure. He has excellent communication skills and always thinks from the product perspective. The DoctorApp he built was critical to our expansion strategy.',
+    linkedinUrl: 'https://www.linkedin.com/in/example4',
+  },
+  {
+    id: 5,
+    author: 'Eko Prasetyo',
+    role: 'CTO',
+    company: 'Do-It',
+    quote: 'Rizki is a versatile engineer who can work across the stack. His contributions to our Android apps with millions of downloads were significant. He also showed great potential in backend and frontend development.',
+    linkedinUrl: 'https://www.linkedin.com/in/example5',
+  },
+]

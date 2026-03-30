@@ -13,6 +13,7 @@ interface MobileShellProps {
     experience: ReactNode
     skills: ReactNode
     projects: ReactNode
+    testimonials: ReactNode
     contact: ReactNode
   }
   desktopSections: ReactNode
@@ -39,7 +40,7 @@ const pageTransition = {
   damping: 30,
 }
 
-const tabOrder: TabId[] = ['home', 'about', 'experience', 'skills', 'projects', 'contact']
+const tabOrder: TabId[] = ['home', 'about', 'experience', 'skills', 'projects', 'testimonials', 'contact']
 
 export default function MobileShell({ mobileSections, desktopSections }: MobileShellProps) {
   const [activeTab, setActiveTab] = useState<TabId>('home')
