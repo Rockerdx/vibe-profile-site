@@ -2,130 +2,104 @@
 
 ## Quick Context
 - **Project:** Professional profile website for Muhammad Rizki Putra (@Rockerdx)
-- **Stack:** Next.js 14 App Router, TypeScript, Tailwind CSS, Framer Motion
-- **Data:** All profile data in `src/lib/data.ts`
-- **Components:** `src/components/` - Hero, About, Experience, Skills, Projects, Contact
-- **Deployment:** Docker (self-hosted on homelab)
+- **Stack:** Next.js 14 App Router, TypeScript, Tailwind CSS, Framer Motion, Go/Gin Backend, PostgreSQL
+- **Frontend:** React components with animations, mobile-first responsive design
+- **Backend:** Go API server with PostgreSQL database
+- **Deployment:** Docker (self-hosted on homelab at http://192.168.0.106:3002)
 
-## File Locations
-| What to Change | File |
-|----------------|------|
-| Profile info (name, email, summary) | `src/lib/data.ts` |
-| Work experience | `src/lib/data.ts` (experiences array) |
-| Skills | `src/lib/data.ts` (skills array) |
-| Projects | `src/lib/data.ts` (projects array) |
-| Types/interfaces | `src/types/index.ts` |
-| Component styling | `src/components/*.tsx` (Tailwind classes) |
-| Global styles | `src/app/globals.css` |
-| Site metadata | `src/app/layout.tsx` |
+## File Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout + SEO metadata
+│   ├── page.tsx            # Main page composition
+│   └── globals.css         # Global styles + Tailwind
+├── components/
+│   ├── Hero.tsx            # Profile header with CTAs
+│   ├── About.tsx           # Bio + education + certifications
+│   ├── Experience.tsx      # Work timeline
+│   ├── Skills.tsx          # Skills grid by category
+│   ├── Projects.tsx        # Project showcase
+│   ├── Contact.tsx         # Contact section
+│   ├── ContactForm.tsx     # Contact form with validation
+│   ├── GitHubStats.tsx     # GitHub stats widget
+│   ├── ThemeToggle.tsx     # Dark/light mode toggle
+│   └── sections/           # Mobile section wrappers
+├── lib/
+│   ├── data.ts             # Static data (fallback)
+│   ├── api-data.ts         # API data fetching with fallback
+│   ├── api/                # API client
+│   └── resume.ts           # Resume PDF generation
+├── types/
+│   └── index.ts            # TypeScript interfaces
+└── hooks/
+    └── useReducedMotion.ts # Accessibility hook
+```
+
+## Data Sources
+
+**Primary:** Go/Gin API (`http://localhost:8080`)
+- `/api/profile` - Profile information
+- `/api/experiences` - Work experiences
+- `/api/skills` - Skills by category
+- `/api/projects` - Projects
+- `/api/education` - Education history
+- `/api/certifications` - Certifications
+- `/api/resume/download` - Download resume PDF
+- `/health` - Health check
+
+**Fallback:** Static data in `src/lib/data.ts` when API unavailable
 
 ## Common Tasks
 
 ### Update Profile Information
-1. Open `src/lib/data.ts`
-2. Modify the `profile` object
-3. Run `npm run build` to verify no TypeScript errors
-4. Test locally with `npm run dev`
+1. **Via API (Recommended):** Update seed data in backend, restart server
+2. **Via Static Data (Fallback):** Edit `src/lib/data.ts` profile object, run `npm run build`
 
 ### Add New Experience
-1. Open `src/lib/data.ts`
-2. Add new object to `experiences` array following existing pattern
-3. Ensure all required fields: company, position, period, duration, location, achievements
-4. Run `npm run build` to verify
+1. Add to backend database via API or seed data
+2. Or edit `src/lib/data.ts` experiences array
+3. Run `npm run build` to verify
 
 ### Add New Skill
-1. Open `src/lib/data.ts`
-2. Add to `skills` array: `{ name: 'Skill Name', category: 'mobile' | 'backend' | 'other' }`
-3. Run `npm run build`
+1. Edit `src/lib/data.ts` skills array: `{ id: n, name: 'Skill', category: 'mobile'|'backend'|'other' }`
+2. Run `npm run build`
 
 ### Add New Project
-1. Open `src/lib/data.ts`
-2. Add to `projects` array following existing pattern
-3. Set `highlighted: true` for featured projects
-4. Run `npm run build`
+1. Edit `src/lib/data.ts` projects array following existing pattern
+2. Set `highlighted: true` for featured projects
+3. Run `npm run build`
 
-### Modify Component Styling
-1. Open target component in `src/components/`
-2. Adjust Tailwind CSS classes
-3. Keep responsive design: mobile-first, use `md:`, `lg:` prefixes
-4. Maintain dark mode (default)
-
-## Constraints
-- ❌ NO backend changes (static site only)
-- ❌ NO database additions
-- ✅ KEEP TypeScript strict mode enabled
-- ✅ MAINTAIN responsive design (test 320px, 768px, 1280px)
-- ✅ PRESERVE dark mode as default
-- ✅ KEEP Framer Motion animations (respect `prefers-reduced-motion`)
-
-## Validation Commands
-```bash
-# ALWAYS run before committing
-npm run build    # Verify TypeScript compilation
-npm run lint     # Check code quality
-
-# Test locally
-npm run dev      # Development server at localhost:3000
-
-# Docker testing
-docker-compose up -d --build
-docker-compose logs -f
-docker-compose down
-
-# Production deployment
-./deploy.sh      # Deploy to production
-./deploy.sh logs # View logs
-./deploy.sh status # Check status
-```
+### Modify Styling
+1. Edit component in `src/components/*.tsx`
+2. Use Tailwind classes (mobile-first with `md:`, `lg:` prefixes)
+3. Maintain dark mode as default
+4. Test responsive at 320px, 768px, 1280px
 
 ## Component Patterns
 
-### All Components Follow This Structure
+### Standard Component Structure
 ```typescript
 'use client'  // If using Framer Motion animations
 
 import { motion } from 'framer-motion'
 import { IconName } from 'lucide-react'
+import useReducedMotion from '@/hooks/useReducedMotion'
 
-export default function ComponentName() {
-  return (
-    <section id="section-name" className="...">
-      {/* Component content */}
-    </section>
-  )
+interface ComponentProps {
+  // Define props here
 }
-```
 
-### Animation Pattern
-```typescript
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5 }}
->
-  {/* Content */}
-</motion.div>
-```
-
-### Component Pattern Template
-```typescript
-'use client'  // If using Framer Motion
-
-import { motion } from 'framer-motion'
-import { IconName } from 'lucide-react'
-import useReducedMotion from '@/hooks/useReducedMotion'  // For animations
-
-export default function ComponentName() {
+export default function ComponentName({ props }: ComponentProps) {
   const reducedMotion = useReducedMotion()
   
   return (
-    <section id="section-name" className="...">
+    <section id="section-name" className="section-container">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        animate={reducedMotion ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.5 }}
       >
         {/* Content */}
@@ -135,18 +109,17 @@ export default function ComponentName() {
 }
 ```
 
-### Animation Pattern with Stagger
+### Animation with Stagger
 ```typescript
 {items.map((item, index) => (
   <motion.div
     key={item.id}
-    initial={{ opacity: 0, y: 20 }}
+    initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    animate={reducedMotion ? { opacity: 1, y: 0 } : undefined}
     transition={{
       duration: 0.5,
-      delay: reducedMotion ? 0 : index * 0.1,  // Stagger effect
+      delay: reducedMotion ? 0 : index * 0.1,
     }}
   >
     {/* Item content */}
@@ -154,208 +127,133 @@ export default function ComponentName() {
 ))}
 ```
 
-### Hook Pattern
+### API Data Fetching Pattern
 ```typescript
-// src/hooks/useX.ts
-import { useEffect, useState } from 'react'
+import { getProfileData } from '@/lib/api-data'
 
-export const useX = () => {
-  const [state, setState] = useState(false)
+export default async function Page() {
+  const profile = await getProfileData() // Auto-fallback to static data
+  return <Hero profile={profile} />
+}
+```
 
-  useEffect(() => {
-    // Setup logic
-    const cleanup = () => {
-      // Cleanup logic
-    }
-    return cleanup
-  }, [])
+## Validation Commands
 
-  return state
+```bash
+# ALWAYS run before committing
+npm run build    # Verify TypeScript compilation (must pass)
+npm run lint     # Check code quality
+npm test         # Run unit tests
+
+# Development
+npm run dev      # Development server at localhost:3000
+
+# Docker deployment
+./deploy.sh              # Deploy to production
+./deploy.sh restart      # Restart container
+./deploy.sh logs         # View logs
+./deploy.sh status       # Check status
+```
+
+## Constraints
+
+- ✅ KEEP TypeScript strict mode enabled
+- ✅ MAINTAIN responsive design (mobile-first)
+- ✅ PRESERVE dark mode as default (with light mode toggle)
+- ✅ KEEP Framer Motion animations (respect `prefers-reduced-motion`)
+- ✅ ALWAYS use API data with fallback to static data
+- ✅ Test API connectivity before assuming static data
+
+## Environment Variables
+
+Frontend (`.env.local`):
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8080
+```
+
+## Key TypeScript Interfaces
+
+```typescript
+// src/types/index.ts
+interface ProfileData {
+  id: number
+  name: string
+  title: string
+  location: string
+  email: string
+  linkedin: string
+  github: string
+  summary: string
+  avatarUrl: string
 }
 
-export default useX
+interface Experience {
+  id: number
+  company: string
+  position: string
+  period: string
+  duration: string
+  location: string
+  achievements: string[]
+  techStack?: string[]
+}
+
+interface Skill {
+  id: number
+  name: string
+  category: 'mobile' | 'backend' | 'other'
+}
+
+interface Project {
+  id: number
+  name: string
+  description: string
+  url: string
+  tech: string[]
+  highlighted?: boolean
+}
 ```
 
-## Deployment
+## Testing
 
-### Local Development
 ```bash
-npm install
-npm run dev
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
 ```
 
-### Docker Deployment
-```bash
-# Build and run
-docker-compose up -d --build
-
-# View logs
-docker-compose logs -f
-
-# Stop
-docker-compose down
-```
-
-### Quick Deploy (Recommended)
-```bash
-# Deploy with one command
-./deploy.sh
-
-# Restart without rebuild
-./deploy.sh restart
-
-# View logs
-./deploy.sh logs
-
-# Check status
-./deploy.sh status
-
-# See all commands
-./deploy.sh --help
-```
-
-### Homelab
-- Access at: http://192.168.0.106:3002
-- Docker container on existing homelab server
+Test files in `src/__tests__/`:
+- Component tests: `components/*.test.tsx`
+- Hook tests: `hooks/*.test.tsx`
 
 ## Troubleshooting
 
-### TypeScript Errors
-1. Read error message carefully
-2. Check `src/types/index.ts` for type definitions
-3. Ensure `src/lib/data.ts` matches type interfaces
-4. Run `npm run build` to verify fix
+| Problem | Solution |
+|---------|----------|
+| Build fails | Check TypeScript errors, run `npm install` |
+| API connection refused | Backend not running, will fallback to static data |
+| Styles not updating | Clear cache: `rm -rf .next && npm run build` |
+| Docker won't start | Check port 3002 not in use |
+| Animation janky | Add `viewport={{ once: true }}` to motion components |
+| ESLint errors | Run `npm run lint` to see specific errors |
 
-### Build Fails
-1. Check for missing dependencies: `npm install`
-2. Clear cache: `rm -rf .next && npm run build`
-3. Check Node.js version (should be 18+)
+## Deployment URLs
 
-### Styling Issues
-1. Check Tailwind class names (no typos)
-2. Verify responsive breakpoints
-3. Test in browser DevTools responsive mode
+- **Local:** http://localhost:3002
+- **Homelab:** http://192.168.0.106:3002
+- **Public:** https://me.rockerdx.site
 
-## Development Flow Pattern
+## Feature Summary
 
-### Issue → Task → Implementation → Deployment
-
-When working on a GitHub issue:
-
-1. **Review the Issue**
-   - Read issue description and tasks
-   - Check acceptance criteria
-   - Note files to modify
-   - Estimate difficulty and time
-
-2. **Create Plan**
-   - Break down tasks into atomic steps
-   - Identify files to create/modify
-   - Check for existing patterns in codebase
-   - Verify dependencies are available
-
-3. **Implementation Steps**
-   - Create new files first (hooks, utilities)
-   - Update existing components
-   - Follow existing patterns and conventions
-   - Add TypeScript types where needed
-
-4. **Testing & Validation**
-   ```bash
-   # Build verification
-   npm run build
-   
-   # Test locally
-   npm run dev
-   
-   # Check for errors
-   npm run lint
-   ```
-
-5. **Commit Changes**
-   - Use conventional commit messages
-   - Reference issue number in commit
-   - Keep commits atomic and focused
-
-6. **Deploy**
-   - Use `./deploy.sh` for production deployment
-   - Verify HTTP 200 response
-   - Test on localhost and public URL
-
-### Component Pattern Template
-```typescript
-'use client'  // If using Framer Motion
-
-import { motion } from 'framer-motion'
-import { IconName } from 'lucide-react'
-import useReducedMotion from '@/hooks/useReducedMotion'  // For animations
-
-export default function ComponentName() {
-  const reducedMotion = useReducedMotion()
-  
-  return (
-    <section id="section-name" className="...">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        animate={reducedMotion ? { opacity: 1, y: 0 } : undefined}
-        transition={{ duration: 0.5 }}
-      >
-        {/* Content */}
-      </motion.div>
-    </section>
-  )
-}
-```
-
-### Animation Pattern with Stagger
-```typescript
-{items.map((item, index) => (
-  <motion.div
-    key={item.id}
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    animate={reducedMotion ? { opacity: 1, y: 0 } : undefined}
-    transition={{
-      duration: 0.5,
-      delay: reducedMotion ? 0 : index * 0.1,  // Stagger effect
-    }}
-  >
-    {/* Item content */}
-  </motion.div>
-))}
-```
-
-### Hook Pattern
-```typescript
-// src/hooks/useX.ts
-import { useEffect, useState } from 'react'
-
-export const useX = () => {
-  const [state, setState] = useState(false)
-
-  useEffect(() => {
-    // Setup logic
-    const cleanup = () => {
-      // Cleanup logic
-    }
-    return cleanup
-  }, [])
-
-  return state
-}
-
-export default useX
-```
-
-## Key Files Reference
-- `README.md` - Project overview and setup
-- `TASKS.md` - Task tracking and TODO list
-- `package.json` - Dependencies and scripts
-- `tailwind.config.ts` - Tailwind configuration
-- `tsconfig.json` - TypeScript configuration
-- `next.config.js` - Next.js configuration
-- `Dockerfile` - Production Docker build
-- `docker-compose.yml` - Docker deployment config
+- ✅ Responsive design (mobile-first)
+- ✅ Dark/Light mode toggle
+- ✅ Smooth Framer Motion animations with reduced motion support
+- ✅ Go/Gin REST API with PostgreSQL
+- ✅ Contact form with validation
+- ✅ Resume PDF download
+- ✅ GitHub stats widget
+- ✅ Docker containerization
+- ✅ SEO optimized with Open Graph tags
+- ✅ Unit tests with Jest + React Testing Library
