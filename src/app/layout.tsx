@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
-import dynamic from 'next/dynamic'
 
-const ThemeToggle = dynamic(() => import('@/components/ThemeToggle'), { ssr: false })
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: 'Muhammad Rizki Putra - Senior Software Engineer',
@@ -32,10 +32,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
+      <body className={`${inter.className} antialiased`}>
         <ThemeProvider>
-          <ThemeToggle />
           {children}
         </ThemeProvider>
       </body>

@@ -1,11 +1,12 @@
-import { Experience, Skill, Project, ProfileData } from '@/types'
+import { Experience, Skill, Project, ProfileData, Education, Certification, GitHubStats } from '@/types'
 
 export const profile: ProfileData = {
+  id: 1,
   name: 'Muhammad Rizki Putra',
   title: 'Senior Software Engineer | Kotlin | Go | Stockbit',
   location: 'Kota Tangerang Selatan, Banten, Indonesia',
   email: 'rzk.putra@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/muhammadrizky-putra',
+  linkedin: 'https://www.linkedin.com/in/muhammad-rizky-putra/',
   github: 'https://github.com/Rockerdx',
   summary: 'Seasoned Software Engineer with 5+ years of hands-on experience. Currently excelling as a Backend Engineer at Stockbit, specializing in Go development. Previously made significant contributions to Android development—improving app reliability and teaching Android classes at Binar Academy.',
   avatarUrl: 'https://avatars.githubusercontent.com/u/16275342?v=4',
@@ -13,6 +14,7 @@ export const profile: ProfileData = {
 
 export const experiences: Experience[] = [
   {
+    id: 1,
     company: 'Stockbit',
     position: 'Backend Engineer',
     period: 'August 2023 - Present',
@@ -25,6 +27,7 @@ export const experiences: Experience[] = [
     techStack: ['Golang', 'PostgreSQL', 'gRPC', 'Microservices', 'Redis', 'Kafka'],
   },
   {
+    id: 2,
     company: 'Stockbit',
     position: 'Android Engineer',
     period: 'October 2021 - September 2023',
@@ -38,6 +41,7 @@ export const experiences: Experience[] = [
     techStack: ['Kotlin', 'Android', 'Java'],
   },
   {
+    id: 3,
     company: 'Binar Academy',
     position: 'Android Academy Facilitator',
     period: 'April 2022 - August 2022',
@@ -49,6 +53,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin', 'Java'],
   },
   {
+    id: 4,
     company: 'Otospector',
     position: 'Senior Android Developer',
     period: 'March 2021 - September 2021',
@@ -61,6 +66,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin'],
   },
   {
+    id: 5,
     company: 'YesDok',
     position: 'Android Developer',
     period: 'August 2020 - March 2021',
@@ -73,6 +79,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin'],
   },
   {
+    id: 6,
     company: 'Do-It',
     position: 'Fullstack Android Developer',
     period: 'September 2019 - July 2020',
@@ -87,6 +94,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Kotlin', 'Spring', 'Vue.js'],
   },
   {
+    id: 7,
     company: 'Self-Employed',
     position: 'Android Developer',
     period: 'September 2016 - August 2019',
@@ -98,6 +106,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Java', 'Kotlin'],
   },
   {
+    id: 8,
     company: 'Mashara',
     position: 'Android Developer',
     period: 'November 2017 - February 2019',
@@ -111,6 +120,7 @@ export const experiences: Experience[] = [
     techStack: ['Android', 'Java'],
   },
   {
+    id: 9,
     company: 'Universitas Sumatera Utara',
     position: 'Laboratory Assistant',
     period: 'September 2016 - August 2017',
@@ -124,24 +134,25 @@ export const experiences: Experience[] = [
 ]
 
 export const skills: Skill[] = [
-  { name: 'Mobile Application Development', category: 'mobile' },
-  { name: 'Android Framework', category: 'mobile' },
-  { name: 'Mobile Product Development', category: 'mobile' },
-  { name: 'Kotlin', category: 'mobile' },
-  { name: 'Java', category: 'mobile' },
-  { name: 'Flutter', category: 'mobile' },
-  { name: 'Golang', category: 'backend' },
-  { name: 'PostgreSQL', category: 'backend' },
-  { name: 'gRPC', category: 'backend' },
-  { name: 'Microservices', category: 'backend' },
-  { name: 'Redis', category: 'backend' },
-  { name: 'Kafka', category: 'backend' },
-  { name: 'Spring', category: 'backend' },
-  { name: 'Vue.js', category: 'other' },
+  { id: 1, name: 'Mobile Application Development', category: 'mobile' },
+  { id: 2, name: 'Android Framework', category: 'mobile' },
+  { id: 3, name: 'Mobile Product Development', category: 'mobile' },
+  { id: 4, name: 'Kotlin', category: 'mobile' },
+  { id: 5, name: 'Java', category: 'mobile' },
+  { id: 6, name: 'Flutter', category: 'mobile' },
+  { id: 7, name: 'Golang', category: 'backend' },
+  { id: 8, name: 'PostgreSQL', category: 'backend' },
+  { id: 9, name: 'gRPC', category: 'backend' },
+  { id: 10, name: 'Microservices', category: 'backend' },
+  { id: 11, name: 'Redis', category: 'backend' },
+  { id: 12, name: 'Kafka', category: 'backend' },
+  { id: 13, name: 'Spring', category: 'backend' },
+  { id: 14, name: 'Vue.js', category: 'other' },
 ]
 
 export const projects: Project[] = [
   {
+    id: 1,
     name: 'MyPopularMoviesApps',
     description: 'App for Udacity Submission - Movie discovery application',
     url: 'https://github.com/Rockerdx/MyPopularMoviesApps',
@@ -149,6 +160,7 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 2,
     name: 'FlutterPopularMoviesApp',
     description: 'Simple implementation of Flutter with API from TheMovieDB',
     url: 'https://github.com/Rockerdx/FlutterPopularMoviesApp',
@@ -156,6 +168,7 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 3,
     name: 'KlinikApp',
     description: 'App to book reservation from nearby Clinic',
     url: 'https://github.com/Rockerdx/KlinikApp',
@@ -163,6 +176,7 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 4,
     name: 'DeepLearningOnAndroid',
     description: 'Material for deploying deep learning models on mobile and embedded platforms',
     url: 'https://github.com/Rockerdx/DeepLearningOnAndroid',
@@ -170,12 +184,14 @@ export const projects: Project[] = [
     highlighted: true,
   },
   {
+    id: 5,
     name: 'myJNEApps',
     description: 'App to help customers send packages without going to JNE office',
     url: 'https://github.com/Rockerdx/myJNEApps',
     tech: ['Java', 'Android'],
   },
   {
+    id: 6,
     name: 'Temperature',
     description: 'First try creating a library for Android',
     url: 'https://github.com/Rockerdx/Temperature',
@@ -183,15 +199,95 @@ export const projects: Project[] = [
   },
 ]
 
-export const education = [
+export const education: Education[] = [
   {
+    id: 1,
     institution: 'Universitas Sumatera Utara',
     degree: "Bachelor's degree, Computer Science",
     period: '2013 - 2019',
   },
 ]
 
-export const certifications = [
-  'Binar Academy Facilitators',
-  'Bangkit Academy Instructor and Mentor',
+export const certifications: Certification[] = [
+  { id: 1, name: 'Binar Academy Facilitators' },
+  { id: 2, name: 'Bangkit Academy Instructor and Mentor' },
 ]
+
+// Static fallback for GitHub stats
+export const githubStats: GitHubStats = {
+  username: 'Rockerdx',
+  totalContributions: 1247,
+  currentStreak: 12,
+  longestStreak: 28,
+  totalStars: 145,
+  totalForks: 23,
+  topLanguages: [
+    { name: 'Kotlin', percentage: 42, color: '#A97BFF' },
+    { name: 'Java', percentage: 28, color: '#b07219' },
+    { name: 'Go', percentage: 15, color: '#00ADD8' },
+    { name: 'TypeScript', percentage: 8, color: '#3178c6' },
+    { name: 'Python', percentage: 7, color: '#3572A5' },
+  ],
+  recentRepos: [
+    {
+      id: 1,
+      name: 'vibe-profile-site',
+      description: 'Personal portfolio website built with Next.js',
+      url: 'https://github.com/Rockerdx/vibe-profile-site',
+      stars: 12,
+      forks: 2,
+      language: 'TypeScript',
+      updatedAt: '2026-03-28T10:30:00Z',
+    },
+    {
+      id: 2,
+      name: 'MyPopularMoviesApps',
+      description: 'Movie discovery application for Udacity',
+      url: 'https://github.com/Rockerdx/MyPopularMoviesApps',
+      stars: 45,
+      forks: 12,
+      language: 'Java',
+      updatedAt: '2026-02-15T08:20:00Z',
+    },
+    {
+      id: 3,
+      name: 'FlutterPopularMoviesApp',
+      description: 'Flutter movie app with TheMovieDB API',
+      url: 'https://github.com/Rockerdx/FlutterPopularMoviesApp',
+      stars: 23,
+      forks: 5,
+      language: 'Dart',
+      updatedAt: '2026-01-20T14:10:00Z',
+    },
+    {
+      id: 4,
+      name: 'DeepLearningOnAndroid',
+      description: 'Deep learning deployment on mobile',
+      url: 'https://github.com/Rockerdx/DeepLearningOnAndroid',
+      stars: 38,
+      forks: 8,
+      language: 'Python',
+      updatedAt: '2025-12-10T09:45:00Z',
+    },
+    {
+      id: 5,
+      name: 'KlinikApp',
+      description: 'Clinic reservation booking app',
+      url: 'https://github.com/Rockerdx/KlinikApp',
+      stars: 15,
+      forks: 3,
+      language: 'Java',
+      updatedAt: '2025-11-05T16:30:00Z',
+    },
+    {
+      id: 6,
+      name: 'Temperature',
+      description: 'Android temperature library',
+      url: 'https://github.com/Rockerdx/Temperature',
+      stars: 12,
+      forks: 3,
+      language: 'Kotlin',
+      updatedAt: '2025-10-20T11:25:00Z',
+    },
+  ],
+}

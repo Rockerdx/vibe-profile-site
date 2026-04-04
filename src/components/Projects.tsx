@@ -1,45 +1,15 @@
-/**
- * Projects Component - Project showcase with featured and regular projects
- * 
- * Purpose: Display personal and professional projects with GitHub links
- * Data Source: projects array from src/lib/data.ts
- * 
- * Features:
- * - Two sections: Featured Projects + More Projects
- * - Featured: Larger cards, grid layout
- * - More Projects: Smaller cards, 3-column grid
- * - GitHub links (open in new tab)
- * - Tech stack tags for each project
- * - Hover effects on cards
- * 
- * Animations:
- * - Fade in + slide up on scroll into view
- * - Staggered delay for project cards
- * - Featured: slide up, More: scale up
- * - Respects prefers-reduced-motion media query
- * 
- * To Modify:
- * 1. Add project to src/lib/data.ts (projects array)
- * 2. Required fields: name, description, url, tech[]
- * 3. Set highlighted: true for featured projects
- * 
- * Project Interface:
- * - name: string (project title)
- * - description: string (brief description)
- * - url: string (GitHub URL)
- * - tech: string[] (technologies used)
- * - highlighted?: boolean (optional, defaults to false)
- * 
- * @returns Projects section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { projects } from '@/lib/data'
+import { type Project } from '@/types'
 import { Github, Star } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
 
-export default function Projects() {
+interface ProjectsProps {
+  projects: Project[]
+}
+
+export default function Projects({ projects }: ProjectsProps) {
   const reducedMotion = useReducedMotion()
   const highlightedProjects = projects.filter(p => p.highlighted)
   const otherProjects = projects.filter(p => !p.highlighted)
@@ -69,11 +39,6 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                animate={
-                  reducedMotion
-                    ? { opacity: 1, y: 0 }
-                    : { opacity: 1, y: 0 }
-                }
                 transition={{
                   duration: 0.5,
                   delay: reducedMotion ? 0 : index * 0.1,
@@ -94,11 +59,6 @@ export default function Projects() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      animate={
-                        reducedMotion
-                          ? { opacity: 1, scale: 1 }
-                          : { opacity: 1, scale: 1 }
-                      }
                       transition={{
                         duration: 0.3,
                         delay: reducedMotion ? 0 : (i * 0.05 + (index * 0.1)),
@@ -126,11 +86,6 @@ export default function Projects() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                animate={
-                  reducedMotion
-                    ? { opacity: 1, scale: 1 }
-                    : { opacity: 1, scale: 1 }
-                }
                 transition={{
                   duration: 0.4,
                   delay: reducedMotion ? 0 : index * 0.05,
@@ -151,11 +106,6 @@ export default function Projects() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      animate={
-                        reducedMotion
-                          ? { opacity: 1, scale: 1 }
-                          : { opacity: 1, scale: 1 }
-                      }
                       transition={{
                         duration: 0.3,
                         delay: reducedMotion ? 0 : (i * 0.05 + (index * 0.05)),

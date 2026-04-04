@@ -1,45 +1,15 @@
-/**
- * Experience Component - Work history timeline
- * 
- * Purpose: Display professional work experience in chronological order
- * Data Source: experiences array from src/lib/data.ts
- * 
- * Features:
- * - Vertical timeline with connecting line
- * - Company, position, period, duration, location
- * - Achievement bullets
- * - Tech stack tags
- * - Reverse chronological order (newest first)
- * 
- * Animations:
- * - Fade in + slide from left on scroll into view
- * - Staggered delay for each experience item
- * - Respects prefers-reduced-motion media query
- * 
- * To Modify:
- * 1. Add new experience to src/lib/data.ts (experiences array)
- * 2. Ensure all fields: company, position, period, duration, location, achievements
- * 3. Optional: techStack array for technologies used
- * 
- * Required Experience Fields:
- * - company: string
- * - position: string
- * - period: string (e.g., "August 2023 - Present")
- * - duration: string (e.g., "2 years 8 months")
- * - location: string
- * - achievements: string[]
- * - techStack?: string[] (optional)
- * 
- * @returns Experience section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { experiences } from '@/lib/data'
+import { type Experience } from '@/types'
 import { Briefcase } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
 
-export default function Experience() {
+interface ExperienceProps {
+  experiences: Experience[]
+}
+
+export default function Experience({ experiences }: ExperienceProps) {
   const reducedMotion = useReducedMotion()
 
   return (
@@ -58,11 +28,6 @@ export default function Experience() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              animate={
-                reducedMotion
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 1, x: 0 }
-              }
               transition={{
                 duration: 0.5,
                 delay: reducedMotion ? 0 : index * 0.1,
@@ -91,21 +56,21 @@ export default function Experience() {
                       <span className="text-accent mt-1 flex-shrink-0">•</span>
                       {achievement}
                     </li>
-              ))}
-            </ul>
-            {exp.techStack && (
-              <div className="flex flex-wrap gap-2">
-                {exp.techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-mono group-hover:bg-accent/20 transition-colors"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                  ))}
+                </ul>
+                {exp.techStack && (
+                  <div className="flex flex-wrap gap-2">
+                    {exp.techStack.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-mono group-hover:bg-accent/20 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
             </motion.div>
           ))}
         </div>

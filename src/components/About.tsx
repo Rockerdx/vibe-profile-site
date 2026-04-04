@@ -1,35 +1,16 @@
-/**
- * About Component - Biography and credentials section
- * 
- * Purpose: Display professional summary, education, and certifications
- * Data Sources:
- * - profile.summary from src/lib/data.ts
- * - education array from src/lib/data.ts
- * - certifications array from src/lib/data.ts
- * 
- * Features:
- * - Two-column layout (bio + education/certs)
- * - Responsive: stacks on mobile
- * - Education cards with institution, degree, period
- * - Certifications list
- * 
- * Animations:
- * - Fade in + slide up on scroll into view
- * 
- * To Modify:
- * 1. Update education/certifications in src/lib/data.ts
- * 2. Adjust Tailwind classes for styling
- * 3. Add new sections (e.g., publications, speaking)
- * 
- * @returns About section React component
- */
 'use client'
 
 import { motion } from 'framer-motion'
-import { profile, certifications, education } from '@/lib/data'
+import { ProfileData, Education, Certification } from '@/types'
 import { Award, GraduationCap } from 'lucide-react'
 
-export default function About() {
+interface AboutProps {
+  profile: ProfileData
+  education: Education[]
+  certifications: Certification[]
+}
+
+export default function About({ profile, education, certifications }: AboutProps) {
   return (
     <section className="section-container">
       <motion.div
@@ -76,7 +57,7 @@ export default function About() {
                 {certifications.map((cert, index) => (
                   <li key={index} className="text-secondary flex items-start gap-2">
                     <span className="text-accent mt-1">•</span>
-                    {cert}
+                    {cert.name}
                   </li>
                 ))}
               </ul>
