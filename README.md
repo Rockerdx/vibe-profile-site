@@ -1,46 +1,107 @@
-# vibe-profile-site
+# Vibe Profile Site
 
-Professional profile website for Muhammad Rizki Putra (@Rockerdx)
+[![Next.js](https://img.shields.io/badge/Next.js%2014-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Go](https://img.shields.io/badge/Go%2FGin-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://gin-gonic.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-## Tech Stack
+Professional profile website for **Muhammad Rizki Putra** ([@Rockerdx](https://github.com/Rockerdx))
 
-### Frontend
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Icons:** Lucide React
+🚀 **Live Demo**: [https://me.rockerdx.site](https://me.rockerdx.site)
 
-### Backend
-- **Language:** Go 1.21
-- **Framework:** Gin
-- **Database:** PostgreSQL 15
-- **Config:** Viper (JSON)
+<!-- Add screenshot here -->
+<!-- ![Screenshot](docs/screenshot.png) -->
 
-### Deployment
-- Docker & Docker Compose (Self-hosted)
+## ✨ Features
 
-## Quick Start
+- **Responsive Design** - Mobile-first approach with breakpoints for all devices
+- **Dark/Light Mode** - Theme toggle with system preference detection
+- **Smooth Animations** - Framer Motion with reduced motion support
+- **SEO Optimized** - Meta tags, Open Graph, structured data
+- **Type Safe** - Full TypeScript coverage
+- **API Driven** - Go/Gin backend with PostgreSQL
+- **Contact Form** - Form validation and submission
+- **Resume Download** - PDF generation on demand
+- **GitHub Stats** - Live widget showing GitHub activity
+- **Docker Ready** - Complete containerization for easy deployment
 
-### Frontend Development
+## 📋 Table of Contents
+
+- [Architecture](#-architecture)
+- [Quick Start](#-quick-start)
+- [Development](#-development)
+- [API Reference](#-api-reference)
+- [Deployment](#-deployment)
+- [Customization](#-customization)
+- [Troubleshooting](#-troubleshooting)
+
+## 🏗️ Architecture
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   Frontend      │     │    Backend      │     │   Database      │
+│   Next.js 14    │────▶│   Go/Gin API    │────▶│   PostgreSQL    │
+│   Port: 3002    │     │   Port: 8080    │     │   Port: 5432    │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+```
+
+**Frontend** (this repository)
+- Next.js 14 App Router
+- React Server Components
+- Tailwind CSS styling
+- Framer Motion animations
+- Static + Dynamic data fetching
+
+**Backend** (separate repository: `vibe-profile-backend`)
+- Go 1.21 with Gin framework
+- RESTful API design
+- PostgreSQL with GORM
+- Health check endpoints
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- Docker & Docker Compose (for full stack)
+- Go 1.21+ (for backend development only)
+
+### One-Command Deploy
+
+```bash
+# Clone both repositories
+git clone https://github.com/yourusername/vibe-profile-site.git
+git clone https://github.com/yourusername/vibe-profile-backend.git ../vibe-profile-backend
+
+# Deploy everything
+cd vibe-profile-site
+./deploy.sh
+```
+
+## 💻 Development
+
+### Frontend Only
 
 ```bash
 # Install dependencies
 npm install
 
+# Copy environment template
+cp .env.example .env.local
+
 # Run development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Access at [http://localhost:3000](http://localhost:3000)
 
-### Backend Development
+### Full Stack (with Backend)
 
 ```bash
+# Terminal 1: Start database and backend
 cd ../vibe-profile-backend
-
-# Install dependencies
-go mod download
 
 # Start PostgreSQL
 docker run -d --name postgres \
@@ -50,158 +111,99 @@ docker run -d --name postgres \
   -p 5432:5432 \
   postgres:15-alpine
 
-# Run migrations and seed data
+# Run migrations
 go run cmd/migrate.go
 
-# Start server
+# Start backend server
 go run cmd/main.go
+
+# Terminal 2: Start frontend
+cd vibe-profile-site
+npm run dev
 ```
 
-API runs on `http://localhost:8080`
+## 📡 API Reference
 
-### Build & Production
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/profile` | Profile information |
+| GET | `/api/experiences` | Work experience history |
+| GET | `/api/skills` | Skills categorized by type |
+| GET | `/api/projects` | Portfolio projects |
+| GET | `/api/education` | Education background |
+| GET | `/api/certifications` | Professional certifications |
+| GET | `/api/resume/download` | Download resume PDF |
+| GET | `/health` | Health check status |
 
-```bash
-# Frontend build
-npm run build
-npm start
+Base URL: `http://localhost:8080`
 
-# Lint code
-npm run lint
-```
+## 🐳 Deployment
 
-## Docker Deployment
-
-### Quick Deploy (Recommended)
-
-```bash
-# Deploy with one command
-./deploy.sh
-
-# Restart without rebuild
-./deploy.sh restart
-
-# View logs
-./deploy.sh logs
-
-# Check status
-./deploy.sh status
-
-# See all commands
-./deploy.sh --help
-```
-
-### Manual Docker Commands
+### Docker Compose (Recommended)
 
 ```bash
-# Build and run all services (frontend + backend + postgres)
+# Build and start all services
 docker compose up -d --build
 
 # View logs
 docker compose logs -f
 
-# Stop
+# Stop all services
 docker compose down
 ```
 
-### Homelab Deployment
+### Deploy Script Commands
 
-The site is deployed to the homelab network. Access at:
-- **Frontend:** http://localhost:3002
-- **Backend API:** http://localhost:8080
-- **Homelab:** http://192.168.0.106:3002
-- **Public:** https://me.rockerdx.site
-
-See [DEPLOY.md](./DEPLOY.md) for full deployment guide.
-
-## Project Structure
-
-```
-.
-├── src/                        # Frontend Next.js app
-│   ├── app/                    # Next.js App Router
-│   ├── components/             # React components
-│   ├── lib/
-│   │   ├── api/                # API client
-│   │   └── data.ts             # Static data (fallback)
-│   └── types/                  # TypeScript types
-└── docker-compose.yml          # Multi-service setup
+```bash
+./deploy.sh              # Full deploy with build
+./deploy.sh restart        # Restart without rebuild
+./deploy.sh logs           # View container logs
+./deploy.sh status         # Check service status
+./deploy.sh --help         # Show all commands
 ```
 
-### Backend (Separate Repository)
+### Deployment URLs
 
-The backend is in a separate directory: `../vibe-profile-backend`
+| Environment | URL |
+|-------------|-----|
+| Local | http://localhost:3002 |
+| Backend API | http://localhost:8080 |
+| Homelab | http://192.168.0.106:3002 |
+| Public | https://me.rockerdx.site |
 
-```
-vibe-profile-backend/
-├── cmd/
-│   ├── main.go             # Server entry point
-│   └── migrate.go          # Migration tool
-├── internal/
-│   ├── config/             # Configuration
-│   ├── database/           # Database layer
-│   ├── handlers/           # HTTP handlers
-│   ├── middleware/         # Gin middleware
-│   └── models/             # Data models
-└── config/
-    └── config.json         # Server config
-```
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/profile` | Get profile information |
-| GET | `/api/experiences` | Get work experiences |
-| GET | `/api/skills` | Get skills by category |
-| GET | `/api/projects` | Get projects |
-| GET | `/api/education` | Get education history |
-| GET | `/api/certifications` | Get certifications |
-| GET | `/health` | Health check |
-
-See [../vibe-profile-backend/README.md](../vibe-profile-backend/README.md) for full API documentation.
-
-## Customization
+## 🎨 Customization
 
 ### Update Profile Data
 
-**Option 1: Via Database (Recommended)**
-1. Update seed data in `../vibe-profile-backend/cmd/migrate.go`
-2. Run `go run ../vibe-profile-backend/cmd/migrate.go`
+**Option 1: Database (Recommended)**
 
-**Option 2: Via Static Data (Fallback)**
-1. Edit `src/lib/data.ts`
-2. Rebuild frontend: `npm run build`
+```bash
+cd ../vibe-profile-backend
 
-### Add New API Endpoint
+# Edit seed data in cmd/migrate.go
+# Then run migrations
+go run cmd/migrate.go
+```
 
-1. Add handler in `../vibe-profile-backend/internal/handlers/handlers.go`
-2. Register route in `../vibe-profile-backend/cmd/main.go`
-3. Add client function in `src/lib/api/client.ts`
+**Option 2: Static Fallback**
 
-## Features
+```typescript
+// Edit src/lib/data.ts
+export const profileData = {
+  name: "Your Name",
+  title: "Your Title",
+  // ...other fields
+}
+```
 
-- ✅ Responsive design (mobile-first)
-- ✅ Dark mode by default
-- ✅ Smooth animations (Framer Motion)
-- ✅ SEO optimized
-- ✅ Open Graph tags
-- ✅ TypeScript for type safety
-- ✅ Go/Gin REST API
-- ✅ PostgreSQL database
-- ✅ Docker containerization
-- ✅ Health check endpoint
+### Environment Variables
 
-## Environment Variables
-
-### Frontend (.env.local)
-
+**Frontend** (`.env.local`)
 ```bash
 NEXT_PUBLIC_API_URL=http://localhost:8080
 ```
 
-### Backend (config/config.json)
-
+**Backend** (`config/config.json`)
 ```json
 {
   "server": {
@@ -218,7 +220,73 @@ NEXT_PUBLIC_API_URL=http://localhost:8080
 }
 ```
 
-## License
+## 🧪 Testing
 
-MIT
+```bash
+# Run all tests
+npm test
 
+# Run tests in watch mode
+npm run test:watch
+
+# Run linting
+npm run lint
+
+# Type check
+npx tsc --noEmit
+```
+
+## 📁 Project Structure
+
+```
+vibe-profile-site/
+├── src/
+│   ├── app/                 # Next.js App Router
+│   │   ├── layout.tsx        # Root layout + SEO
+│   │   ├── page.tsx          # Main page
+│   │   └── globals.css       # Global styles
+│   ├── components/           # React components
+│   │   ├── Hero.tsx          # Profile header
+│   │   ├── About.tsx         # Bio section
+│   │   ├── Experience.tsx    # Work timeline
+│   │   ├── Skills.tsx        # Skills grid
+│   │   ├── Projects.tsx      # Project showcase
+│   │   └── Contact.tsx       # Contact form
+│   ├── lib/
+│   │   ├── api/              # API client
+│   │   ├── data.ts           # Static fallback data
+│   │   └── resume.ts         # PDF generation
+│   ├── types/                # TypeScript interfaces
+│   └── hooks/                # Custom hooks
+├── docker-compose.yml        # Full stack orchestration
+├── deploy.sh                 # Deployment helper
+└── Dockerfile                # Container config
+```
+
+## 🐛 Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Port 3002 in use | `lsof -ti:3002 \| xargs kill -9` or change port in docker-compose.yml |
+| Build fails | Run `npm install` and check TypeScript errors with `npx tsc` |
+| API connection refused | Backend not running; frontend will fallback to static data |
+| Styles not updating | Clear cache: `rm -rf .next && npm run build` |
+| Docker network error | Run `docker network create homelab_homelab-net` |
+| Database connection failed | Check postgres container: `docker logs vibe-postgres` |
+
+## 🛡️ Security & Performance
+
+- **TypeScript Strict Mode** - Full type safety
+- **CORS Configuration** - Origin whitelist
+- **Input Validation** - Form validation on frontend and backend
+- **Reduced Motion Support** - Accessibility-first animations
+- **Docker Security** - Non-root containers
+- **Health Checks** - Service monitoring
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) file for details
+
+---
+
+**Built with ❤️ by [Muhammad Rizki Putra](https://github.com/Rockerdx)**
