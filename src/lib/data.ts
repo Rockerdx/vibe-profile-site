@@ -18,13 +18,15 @@ export const experiences: Experience[] = [
     company: 'Stockbit',
     position: 'Backend Engineer',
     period: 'August 2023 - Present',
-    duration: '2 years 8 months',
+    duration: '2 years 9 months',
     location: 'Jakarta, Indonesia',
     achievements: [
-      'Successfully transitioned to Backend Engineer (Go) through the Internal Mobility program',
-      'Rapid adaptation, contributing meaningfully within just one month',
+      'Improved latency of core issuer/company RPC service by 80% using in-memory caching (Redis), reducing response time from 250ms to 50ms',
+      'Optimized watchlist portfolio sync flow, handling 500,000 events per minute (watchlist is loaded every time 1M+ users open the app homepage)',
+      'Implemented KV2 config scheme for secure credentials handling, dynamic configuration updates, and versioning across all financial services',
+      'Designed complete migration plan to transition issuer symbol system to Indonesia Stock Exchange (IDX) as source of truth, coordinating with financial teams',
     ],
-    techStack: ['Golang', 'PostgreSQL', 'gRPC', 'Microservices', 'Redis', 'Kafka'],
+    techStack: ['Golang', 'PostgreSQL', 'gRPC', 'Microservices', 'Redis', 'Kafka', 'Docker', 'Kubernetes'],
   },
   {
     id: 2,
@@ -134,20 +136,37 @@ export const experiences: Experience[] = [
 ]
 
 export const skills: Skill[] = [
+  // Mobile Development
   { id: 1, name: 'Mobile Application Development', category: 'mobile' },
   { id: 2, name: 'Android Framework', category: 'mobile' },
   { id: 3, name: 'Mobile Product Development', category: 'mobile' },
   { id: 4, name: 'Kotlin', category: 'mobile' },
   { id: 5, name: 'Java', category: 'mobile' },
   { id: 6, name: 'Flutter', category: 'mobile' },
+  // Backend Technologies
   { id: 7, name: 'Golang', category: 'backend' },
   { id: 8, name: 'PostgreSQL', category: 'backend' },
   { id: 9, name: 'gRPC', category: 'backend' },
-  { id: 10, name: 'Microservices', category: 'backend' },
+  { id: 10, name: 'Microservices Architecture', category: 'backend' },
   { id: 11, name: 'Redis', category: 'backend' },
-  { id: 12, name: 'Kafka', category: 'backend' },
-  { id: 13, name: 'Spring', category: 'backend' },
-  { id: 14, name: 'Vue.js', category: 'other' },
+  { id: 12, name: 'Apache Kafka', category: 'backend' },
+  { id: 13, name: 'Spring Boot', category: 'backend' },
+  { id: 14, name: 'REST API Design', category: 'backend' },
+  { id: 15, name: 'System Design', category: 'backend' },
+  { id: 16, name: 'Performance Optimization', category: 'backend' },
+  // DevOps & Infrastructure
+  { id: 17, name: 'Docker', category: 'devops' },
+  { id: 18, name: 'Kubernetes', category: 'devops' },
+  { id: 19, name: 'CI/CD Pipelines', category: 'devops' },
+  { id: 20, name: 'GitHub Actions', category: 'devops' },
+  { id: 21, name: 'AWS/GCP Cloud', category: 'devops' },
+  { id: 22, name: 'Monitoring & Observability', category: 'devops' },
+  { id: 23, name: 'Unit & Integration Testing', category: 'devops' },
+  { id: 24, name: 'Infrastructure as Code', category: 'devops' },
+  // Other Technologies
+  { id: 25, name: 'Vue.js', category: 'other' },
+  { id: 26, name: 'TypeScript', category: 'other' },
+  { id: 27, name: 'Python', category: 'other' },
 ]
 
 export const projects: Project[] = [
@@ -291,3 +310,65 @@ export const githubStats: GitHubStats = {
     },
   ],
 }
+
+// Backend Systems Showcase - Professional work at Stockbit
+export const backendSystems = [
+  {
+    id: 1,
+    name: 'Issuer (Emitten) RPC Service Optimization',
+    description: 'Core financial service providing real-time issuer/company data to the Stockbit platform. Optimized for high-frequency access when users view stock details.',
+    challenge: 'High latency (250ms avg) causing slow page loads for 1M+ daily active users viewing issuer information',
+    solution: 'Implemented multi-layer caching strategy using Redis in-memory cache with cache-aside pattern, reducing database load and response time',
+    impact: [
+      'Reduced response latency by 80% (250ms → 50ms)',
+      'Decreased PostgreSQL load by 65% during market hours',
+      'Improved user experience for stock detail pages',
+    ],
+    tech: ['Golang', 'gRPC', 'Redis', 'PostgreSQL', 'Microservices'],
+    architecture: 'gRPC-based microservice with Redis caching layer',
+  },
+  {
+    id: 2,
+    name: 'Watchlist Portfolio Sync Infrastructure',
+    description: 'Event-driven system synchronizing user watchlist data across devices and handling real-time portfolio updates for Indonesia stock market users.',
+    challenge: '500,000+ events per minute during market open hours, watchlist loaded every time users open the app (homepage feature)',
+    solution: 'Built Kafka-based event streaming architecture with async processing, batching, and deduplication to handle high throughput',
+    impact: [
+      'Successfully handle 500K events/minute at peak',
+      'Sub-second sync latency across 1M+ user devices',
+      'Zero data loss with Kafka persistence and replay capability',
+    ],
+    tech: ['Apache Kafka', 'Golang', 'PostgreSQL', 'Event-Driven Architecture'],
+    architecture: 'Async event streaming with Kafka topics and consumer groups',
+  },
+  {
+    id: 3,
+    name: 'KV2 Configuration Management System',
+    description: 'Secure configuration management system for credentials and dynamic config across all Stockbit financial services.',
+    challenge: 'Hardcoded credentials, manual config updates requiring deployment, no audit trail or versioning for financial compliance',
+    solution: 'Designed KV2 scheme with encryption at rest, versioning, dynamic updates via API, and comprehensive audit logging',
+    impact: [
+      'Eliminated hardcoded credentials across 15+ services',
+      'Enabled zero-downtime configuration updates',
+      'Full versioning and audit trail for compliance',
+      'Secure handling of API keys, database credentials, and third-party tokens',
+    ],
+    tech: ['Golang', 'PostgreSQL', 'Encryption', 'Vault Pattern'],
+    architecture: 'Centralized config service with encryption and versioning',
+  },
+  {
+    id: 4,
+    name: 'IDX Symbol Migration Planning',
+    description: 'Strategic migration to transition issuer symbol system from internal Stockbit database to Indonesia Stock Exchange (IDX) as the authoritative source.',
+    challenge: 'Complex coordination required between Stockbit tech teams and IDX financial teams (source of truth for all issuer data), zero-downtime migration needed',
+    solution: 'Created comprehensive migration plan including data mapping, dual-write strategy, validation procedures, rollback plans, and stakeholder communication framework',
+    impact: [
+      'Designed migration plan for 800+ issuer symbols',
+      'Zero-downtime transition strategy with dual-write phase',
+      'Coordination framework for tech and financial teams',
+      'Risk mitigation with comprehensive rollback procedures',
+    ],
+    tech: ['System Design', 'Data Migration', 'Project Planning', 'PostgreSQL'],
+    architecture: 'Dual-write migration pattern with validation and rollback',
+  },
+] as const

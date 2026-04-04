@@ -241,56 +241,12 @@ export async function getGitHubStats(): Promise<GitHubStats> {
       color: languageColors[name] || '#8b949e',
     }))
 
-  // Fetch contribution stats using GraphQL if token available
-  let totalContributions = 0
-  let currentStreak = 0
-  let longestStreak = 0
+  // Note: Without GitHub token, we can only get basic repo data
+  // Contribution stats require authentication
+  const totalContributions = 0
+  const currentStreak = 0
+  const longestStreak = 0
   
-  if (githubToken) {
-    try {
-      const graphqlResponse = await fetch('https://api.github.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${githubToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: `
-            query {
-              user(login: "${GITHUB_USERNAME}") {
-                contributionsCollection {
-                  contributionCalendar {
-                    totalContributions
-                  }
-                }
-              }
-            }
-          `,
-        }),
-        next: { revalidate: CACHE_REVALIDATE_SECONDS },
-      })
-      
-      if (graphqlResponse.ok) {
-        const data = await graphqlResponse.json()
-        totalContributions = data.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || 0
-      }
-    } catch (error) {
-      console.error('GraphQL fetch error:', error)
-    }
-  }
-  
-  // Estimate streaks if no GraphQL data (fallback)
-  if (totalContributions === 0) {
-    // Estimate based on activity - roughly 60% of year with activity
-    totalContributions = Math.floor(Math.random() * 500) + 800 // Fallback estimate
-    currentStreak = Math.floor(Math.random() * 10) + 3
-    longestStreak = Math.floor(Math.random() * 30) + 15
-  } else {
-    // Estimate streaks from contribution data
-    currentStreak = Math.min(15, Math.floor(totalContributions / 100))
-    longestStreak = Math.min(45, Math.floor(totalContributions / 30))
-  }
-
   return {
     username: GITHUB_USERNAME,
     totalContributions,

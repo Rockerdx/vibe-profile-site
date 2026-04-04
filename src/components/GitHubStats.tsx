@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { GitHubStats as GitHubStatsType } from '@/types'
-import { Github, Star, GitFork, Flame, Activity, Code } from 'lucide-react'
+import { Github, Star, GitFork, Flame, Activity, Code, Info } from 'lucide-react'
 
 interface GitHubStatsProps {
   stats: GitHubStatsType
@@ -43,9 +43,12 @@ export default function GitHubStats({ stats }: GitHubStatsProps) {
           >
             <Activity className="text-accent mb-2" size={24} />
             <p className="text-2xl md:text-3xl font-bold text-primary">
-              {stats.totalContributions.toLocaleString()}
+              {stats.totalContributions > 0 ? stats.totalContributions.toLocaleString() : '—'}
             </p>
             <p className="text-secondary text-sm">Contributions</p>
+            {stats.totalContributions === 0 && (
+              <p className="text-xs text-secondary/60 mt-1">Token required</p>
+            )}
           </motion.div>
 
           {/* Current Streak */}
@@ -58,7 +61,7 @@ export default function GitHubStats({ stats }: GitHubStatsProps) {
           >
             <Flame className="text-orange-500 mb-2" size={24} />
             <p className="text-2xl md:text-3xl font-bold text-primary">
-              {stats.currentStreak}
+              {stats.currentStreak > 0 ? stats.currentStreak : '—'}
             </p>
             <p className="text-secondary text-sm">Current Streak</p>
           </motion.div>
@@ -73,7 +76,7 @@ export default function GitHubStats({ stats }: GitHubStatsProps) {
           >
             <Flame className="text-red-500 mb-2" size={24} />
             <p className="text-2xl md:text-3xl font-bold text-primary">
-              {stats.longestStreak}
+              {stats.longestStreak > 0 ? stats.longestStreak : '—'}
             </p>
             <p className="text-secondary text-sm">Longest Streak</p>
           </motion.div>
@@ -93,6 +96,23 @@ export default function GitHubStats({ stats }: GitHubStatsProps) {
             <p className="text-secondary text-sm">Total Stars</p>
           </motion.div>
         </div>
+
+        {/* Info message for missing contribution stats */}
+        {(stats.totalContributions === 0 || stats.currentStreak === 0) && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 p-4 bg-surface/50 rounded-lg border border-white/10 flex items-start gap-3"
+          >
+            <Info className="text-accent flex-shrink-0" size={20} />
+            <div>
+              <p className="text-sm text-secondary">
+                Contribution stats require GitHub authentication. Repository data shown is live from the GitHub API.
+              </p>
+            </div>
+          </motion.div>
+        )}
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Top Languages */}

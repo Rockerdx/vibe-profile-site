@@ -2,18 +2,20 @@
 
 import { motion } from 'framer-motion'
 import { type Skill } from '@/types'
-import { Smartphone, Server, Code } from 'lucide-react'
+import { Smartphone, Server, Code, Cloud } from 'lucide-react'
 import useReducedMotion from '@/hooks/useReducedMotion'
 
 const categoryIcons = {
   mobile: Smartphone,
   backend: Server,
+  devops: Cloud,
   other: Code,
 }
 
 const categoryTitles = {
   mobile: 'Mobile Development',
-  backend: 'Backend Technologies',
+  backend: 'Backend Engineering',
+  devops: 'DevOps & Infrastructure',
   other: 'Other Technologies',
 }
 
@@ -24,8 +26,9 @@ interface SkillsProps {
 export default function Skills({ skills }: SkillsProps) {
   const reducedMotion = useReducedMotion()
   const skillsByCategory = {
-    mobile: skills.filter(s => s.category === 'mobile'),
     backend: skills.filter(s => s.category === 'backend'),
+    devops: skills.filter(s => s.category === 'devops'),
+    mobile: skills.filter(s => s.category === 'mobile'),
     other: skills.filter(s => s.category === 'other'),
   }
 

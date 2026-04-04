@@ -12,7 +12,7 @@ export interface Experience {
 export interface Skill {
   id: number
   name: string
-  category: 'mobile' | 'backend' | 'other'
+  category: 'mobile' | 'backend' | 'devops' | 'other'
 }
 
 export interface Project {
