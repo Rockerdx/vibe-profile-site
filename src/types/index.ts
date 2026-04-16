@@ -75,3 +75,25 @@ export interface GitHubStats {
   topLanguages: GitHubLanguage[]
   recentRepos: GitHubRepo[]
 }
+
+export interface CaseStudy {
+  id: number
+  name: string
+  description: string
+  githubUrl: string
+  techStack: string[]
+  problem: string
+  solution: string
+  technicalDecisions: string[]
+  challenges: string
+  results: string
+  architecture: {
+    description: string
+    diagram?: string
+    codeSnippets?: {
+      title: string
+      code: string
+    }[]
+  }
+  codeQuality: string[]
+}

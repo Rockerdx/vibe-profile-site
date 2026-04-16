@@ -208,10 +208,17 @@
   }
 
   .btn-secondary {
-    @apply px-6 py-3 bg-surface text-primary font-medium rounded-lg 
-           border border-border transition-all duration-200 
-           hover:bg-surface-elevated hover:border-accent/30
-           active:scale-95;
+    @apply px-6 py-3 bg-surface text-primary font-medium rounded-lg border transition-all duration-200;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--surface-elevated);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.95);
   }
 
   /* Form styles */
