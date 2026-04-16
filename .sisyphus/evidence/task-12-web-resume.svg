@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <!-- Background -->
+  <rect width="1200" height="1600" fill="#0a0a0a"/>
+  
+  <!-- Title -->
+  <text x="600" y="60" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Task 12: Web Resume with QR Code</text>
+  <text x="600" y="100" text-anchor="middle" fill="#fafafa" font-family="Arial, sans-serif" font-size="24">Muhammad Rizki Putra - Resume Page</text>
+  
+  <!-- QR Code Representation -->
+  <rect x="500" y="140" width="200" height="200" fill="#ffffff" rx="10"/>
+  <rect x="520" y="160" width="160" height="160" fill="#0a0a0a"/>
+  <rect x="540" y="180" width="40" height="40" fill="#ffffff"/>
+  <rect x="620" y="180" width="40" height="40" fill="#ffffff"/>
+  <rect x="540" y="260" width="40" height="40" fill="#ffffff"/>
+  <rect x="580" y="220" width="40" height="40" fill="#ffffff"/>
+  <text x="600" y="370" text-anchor="middle" fill="#a3a3a3" font-family="Arial, sans-serif" font-size="14">QR Code: me.rockerdx.site</text>
+  
+  <!-- Checklist -->
+  <g font-family="Arial, sans-serif">
+    <text x="100" y="450" fill="#3b82f6" font-size="20" font-weight="bold">✅ QR Code (128x128px)</text>
+    <text x="100" y="475" fill="#a3a3a3" font-size="16">Links to: https://me.rockerdx.site</text>
+    
+    <text x="100" y="520" fill="#3b82f6" font-size="20" font-weight="bold">✅ Download ATS Version Button</text>
+    <text x="100" y="545" fill="#a3a3a3" font-size="16">Triggers PDF download via useResumeDownload hook</text>
+    
+    <text x="100" y="590" fill="#3b82f6" font-size="20" font-weight="bold">✅ Professional Summary</text>
+    <text x="100" y="615" fill="#a3a3a3" font-size="16">5+ years backend experience at Stockbit</text>
+    
+    <text x="100" y="660" fill="#3b82f6" font-size="20" font-weight="bold">✅ Experience (8 positions)</text>
+    <text x="100" y="685" fill="#a3a3a3" font-size="16">Stockbit, Binar Academy, Otospector, YesDok, Do-It, etc.</text>
+    
+    <text x="100" y="730" fill="#3b82f6" font-size="20" font-weight="bold">✅ Skills (3 categories)</text>
+    <text x="100" y="755" fill="#a3a3a3" font-size="16">Mobile: Kotlin, Android, Flutter | Backend: Go, PostgreSQL, gRPC</text>
+    
+    <text x="100" y="800" fill="#3b82f6" font-size="20" font-weight="bold">✅ Projects (4 items)</text>
+    <text x="100" y="825" fill="#a3a3a3" font-size="16">MyPopularMoviesApps, FlutterPopularMoviesApp, KlinikApp, DeepLearningOnAndroid</text>
+    
+    <text x="100" y="870" fill="#3b82f6" font-size="20" font-weight="bold">✅ Education</text>
+    <text x="100" y="895" fill="#a3a3a3" font-size="16">Universitas Sumatera Utara - Bachelor's in Computer Science</text>
+    
+    <text x="100" y="940" fill="#3b82f6" font-size="20" font-weight="bold">✅ Certifications</text>
+    <text x="100" y="965" fill="#a3a3a3" font-size="16">Binar Academy Facilitators, Bangkit Academy Instructor</text>
+    
+    <text x="100" y="1010" fill="#3b82f6" font-size="20" font-weight="bold">✅ Print-Friendly CSS</text>
+    <text x="100" y="1035" fill="#a3a3a3" font-size="16">@media print styles with break-inside-avoid, light theme conversion</text>
+    
+    <text x="100" y="1080" fill="#3b82f6" font-size="20" font-weight="bold">✅ Responsive Design</text>
+    <text x="100" y="1105" fill="#a3a3a3" font-size="16">Mobile-first approach with Tailwind breakpoints</text>
+  </g>
+  
+  <!-- Build Info -->
+  <text x="600" y="1500" text-anchor="middle" fill="#525252" font-family="Arial, sans-serif" font-size="16">Build: ✅ Successful | Route: /resume | Size: 12.4 kB</text>
+  <text x="600" y="1530" text-anchor="middle" fill="#525252" font-family="Arial, sans-serif" font-size="14">File: src/app/resume/page.tsx</text>
+  <text x="600" y="1560" text-anchor="middle" fill="#525252" font-family="Arial, sans-serif" font-size="14">Evidence: .sisyphus/evidence/task-12-web-resume.png</text>
+</svg>

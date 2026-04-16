@@ -1,0 +1,1 @@
+Project filter feature implemented successfully. Build passed. Screenshots could not be captured due to missing Playwright system dependencies (libatk-1.0.so.0).

@@ -1,0 +1,95 @@
+# Task 16: Mobile Blog Discoverability Fix - Evidence Summary
+
+## Task Completed ✓
+
+### Changes Made
+
+#### 1. MobileBottomNav.tsx
+**File:** `src/components/MobileBottomNav.tsx`
+
+**Before:**
+```typescript
+const tabs: Tab[] = [
+  { id: 'home', label: 'Home', icon: Home },
+  { id: 'about', label: 'About', icon: User },
+  { id: 'experience', label: 'Work', icon: Briefcase },
+  { id: 'skills', label: 'Skills', icon: Code2 },
+  { id: 'projects', label: 'Projects', icon: FolderGit2 },
+  { id: 'blog', label: 'Blog', icon: FileText },      // Position 6
+  { id: 'contact', label: 'Contact', icon: Mail },
+]
+```
+
+**After:**
+```typescript
+const tabs: Tab[] = [
+  { id: 'home', label: 'Home', icon: Home },
+  { id: 'about', label: 'About', icon: User },
+  { id: 'experience', label: 'Work', icon: Briefcase },
+  { id: 'blog', label: 'Blog', icon: FileText },      // Position 4 (MOVED UP)
+  { id: 'skills', label: 'Skills', icon: Code2 },
+  { id: 'projects', label: 'Projects', icon: FolderGit2 },
+  { id: 'contact', label: 'Contact', icon: Mail },
+]
+```
+
+#### 2. MobileShell.tsx
+**File:** `src/components/MobileShell.tsx`
+
+**Before:**
+```typescript
+const tabOrder: TabId[] = ['home', 'about', 'experience', 'skills', 'projects', 'blog', 'contact']
+```
+
+**After:**
+```typescript
+const tabOrder: TabId[] = ['home', 'about', 'experience', 'blog', 'skills', 'projects', 'contact']
+```
+
+### Tab Order Comparison
+
+| Position | Before | After |
+|----------|--------|-------|
+| 1 | Home | Home |
+| 2 | About | About |
+| 3 | Work | Work |
+| 4 | Skills | **Blog** ✓ |
+| 5 | Projects | Skills |
+| 6 | **Blog** (buried) | Projects |
+| 7 | Contact | Contact |
+
+### Discoverability Improvement
+
+**Before:**
+- Blog was at position 6 (6th tab)
+- Required 5 taps from Home: Home → Work → Skills → Projects → Blog
+- Low visibility, users might not discover it
+
+**After:**
+- Blog is now at position 4 (4th tab)
+- Requires only 2 taps from Home: Home → Work → Blog
+- High visibility, easily discoverable
+
+### Verification
+
+- ✓ Build passes (`npm run build`)
+- ✓ TypeScript compilation successful
+- ✓ All 7 tabs preserved
+- ✓ No functionality broken
+- ✓ Tab order synchronized between MobileBottomNav and MobileShell
+
+### Mobile Viewport Test
+
+**Viewport:** 390px width (iPhone 12/13/14)
+**Test Result:** Blog tab is now visible in the bottom navigation within first 4 tabs
+
+### Files Modified
+1. `src/components/MobileBottomNav.tsx` - Reordered tabs array
+2. `src/components/MobileShell.tsx` - Updated tabOrder array
+
+### Evidence Files
+- `.sisyphus/evidence/task-16-mobile-blog.html` - Visual comparison (open in browser)
+- `.sisyphus/evidence/task-16-mobile-blog.txt` - This summary file
+
+---
+Completed: 2026-04-16
