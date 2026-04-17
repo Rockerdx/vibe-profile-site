@@ -22,6 +22,7 @@ export interface Project {
   url: string
   tech: string[]
   highlighted?: boolean
+  category?: 'Android' | 'Backend' | 'Fullstack'
 }
 
 export interface ProfileData {
@@ -34,6 +35,7 @@ export interface ProfileData {
   github: string
   summary: string
   avatarUrl: string
+  funFacts?: string[]
 }
 
 export interface Education {
@@ -76,24 +78,39 @@ export interface GitHubStats {
   recentRepos: GitHubRepo[]
 }
 
-export interface CaseStudy {
+export interface Testimonial {
   id: number
+  author: string
+  role: string
+  company: string
+  quote: string
+  linkedinUrl?: string
+  avatarUrl?: string
+}
+
+export interface CodeSnippet {
+  title: string
+  code: string
+  language: string
+}
+
+export interface CaseStudyArchitecture {
+  description: string
+  diagram?: string
+  codeSnippets?: CodeSnippet[]
+}
+
+export interface CaseStudy {
+  id: string
   name: string
   description: string
-  githubUrl: string
   techStack: string[]
+  githubUrl: string
   problem: string
   solution: string
   technicalDecisions: string[]
   challenges: string
   results: string
-  architecture: {
-    description: string
-    diagram?: string
-    codeSnippets?: {
-      title: string
-      code: string
-    }[]
-  }
+  architecture: CaseStudyArchitecture
   codeQuality: string[]
 }
